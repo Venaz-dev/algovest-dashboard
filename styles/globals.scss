@@ -1,0 +1,49 @@
+@font-face {
+  font-family: Inter;
+  src: url(/fonts/inter/Inter-Bold.woff);
+  font-weight: bold;
+}
+@font-face {
+  font-family: Inter;
+  src: url(/fonts/inter/Inter-Regular.woff);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  color: #222222;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  height: fit-content !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+p {
+  margin: 0;
+}
+
+.layout {
+  min-height: 100vh;
+  background-color: #e5e5e580;
+  .children {
+    padding-top: 100px;
+  }
+}
+
+.pad-wrap {
+  padding-right: 7%;
+  padding-left: 7%;
+}
