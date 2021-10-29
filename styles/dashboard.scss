@@ -6,7 +6,7 @@
   .description {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     .btn {
       width: 100px;
     }
@@ -29,6 +29,125 @@
       border-radius: 8px;
       padding: 24px;
       padding-top: 5px;
+    }
+    .stats {
+      p {
+        padding: 10px 0;
+        span {
+          color: rgb(8, 245, 8);
+        }
+      }
+    }
+    .right-content {
+      p {
+        font-weight: 700;
+      }
+    }
+    
+  }
+
+  .input_cont {
+    padding-left: 25px;
+
+    input {
+      height: 35px;
+      width: 94%;
+      border: none;
+      outline: none;
+      margin-left: 5px;
+      font-size: 1.2rem;
+
+      &::placeholder {
+        color: gray;
+        font-size: 1.05rem;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .staking-content {
+    background-color: white;
+    border: 1.5px solid rgba(196, 196, 196, 0.51);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 36px 24px;
+
+
+    .styled-table {
+      margin-top: 20px;
+      border-collapse: collapse;
+
+      thead tr {
+        text-align: left;
+        color: gray;
+        border-bottom: 1px solid;
+      }
+
+      th,
+      td {
+        padding: 13px 60px 13px 0px;
+        // border: 1px solid;
+      }
+
+      tbody tr {
+        border-bottom: 1px solid #cec;
+
+        td:nth-child(4) {
+          color: rgb(8, 245, 8);
+        }
+      }
+    }
+  }
+  .yield-content {
+    background-color: white;
+    border: 1.5px solid rgba(196, 196, 196, 0.51);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 36px 24px;
+
+    .styled-table {
+      border-collapse: collapse;
+      margin-top: 20px;
+
+
+      thead tr {
+        text-align: left;
+        color: gray;
+        border-bottom: 1px solid;
+      }
+
+      th,
+      td {
+        padding: 13px 15px 13px 0px;
+      }
+
+      tbody tr {
+        border-bottom: 1px solid #cec;
+
+        td:nth-child(6) {
+          color: rgb(8, 245, 8);
+        }
+      }
+    }
+  }
+  .pool_stats_container {
+    background-color: white;
+    border: 1.5px solid rgba(196, 196, 196, 0.51);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 36px 24px;
+    .stats {
+      p {
+        padding: 10px 0;
+      }
+    }
+    .right-content {
+      p {
+        font-weight: 700;
+      }
+    }
+    .chart {
+      border-left: 1px solid #000;
     }
   }
 }

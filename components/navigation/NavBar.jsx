@@ -20,7 +20,7 @@ const NavBar = () => {
                 </div>
               </a>
             </Link>
-            <Link href="/">
+            <Link href="/yieldpool">
               <a>
                 <div className="nav-link">
                   <p>Yield Pool</p>
