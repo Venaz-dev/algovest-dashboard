@@ -199,14 +199,14 @@ const Icons = ({ name, size, color, className }) => {
         rx={57}
         ry={57}
         fill="none"
-        stroke="#000"
+        stroke={color}
         strokeLinejoin="round"
         strokeWidth={32}
       />
       <path
         d="M383.5 128l.5-24a56.16 56.16 0 00-56-56H112a64.19 64.19 0 00-64 64v216a56.16 56.16 0 0056 56h24"
         fill="none"
-        stroke="#000"
+        stroke={color}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={32}

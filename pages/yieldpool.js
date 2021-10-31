@@ -1,10 +1,21 @@
 import Head from "next/head";
+import React, {useState} from 'react';
 import Layout from "../components/navigation/Layout";
 import Icon from "../components/common/Icons";
 import YieldPoolComp from "../components/yieldPool/YieldPool";
 import SearchInput from "../components/inputs/SearchInput";
+import LineChartCompOne from "../components/chart/Chart";
+import YieldPoolModalComp from "../components/modals/YieldPoolModal";
 
 export default function YieldPoolPage() {
+  const [showModal, setShowModal] = useState(false);
+    
+    const openModal = () => {
+        setShowModal(!showModal);
+    }
+    const closeModal = () => {
+        setShowModal(!showModal);
+    }
   return (
     <Layout>
       <div className="dashboard">
@@ -16,7 +27,8 @@ export default function YieldPoolPage() {
               protection. Pool More, Earn More!
             </p>
           </div>
-          <button className="btn btn-primary">Desposit USDC</button>
+          <button className="btn btn-primary"
+              onClick={openModal}>Desposit USDC</button>
         </div>
         <div className="pool_stats_container flex">
           <div className="w-50">
@@ -44,14 +56,20 @@ export default function YieldPoolPage() {
           </div>
           <div className="w-50">
             <p className="font-large">Average Deposit Rate</p>
-            <div className="chart">Chart</div>
+            <div className="chart">
+              <LineChartCompOne />
+            </div>
           </div>
         </div>
 
         <div className="yield-content mt-5">
           <p className="font-large"> Yield Pool Transcations</p>
           <div className="flex justify-between w-100">
-            <SearchInput  icon_name="SearchRightIcon" size={20} placeholder="Search for amount, APY or rewards"/>
+            <SearchInput
+              icon_name="SearchRightIcon"
+              size={20}
+              placeholder="Search for amount, APY or rewards"
+            />
             <button className="btn btn-secondary  w-25">
               <Icon
                 name="DownloadIcon"
@@ -65,6 +83,7 @@ export default function YieldPoolPage() {
           <YieldPoolComp />
         </div>
       </div>
+      <YieldPoolModalComp showModal={showModal} closeModal={closeModal}/>
     </Layout>
   );
 }

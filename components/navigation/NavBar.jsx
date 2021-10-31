@@ -1,10 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import Link from "next/link";
+import { useRouter } from 'next/router';
 import { useScrollDetect } from "../../utils";
 import Icons from "../common/Icons";
+import NavbarModalComp from '../modals/NavbarModal';
 
 const NavBar = () => {
+  const [toggleModal, setToggleModal] = useState(false);
+    
+    const openModal = () => {
+        setToggleModal(!toggleModal);
+    }
+    const closeModal = () => {
+        setToggleModal(!toggleModal);
+    }
+
   const { shadow } = useScrollDetect();
+
+  const router = useRouter();
+
   return (
     <div className={`nav-bar ${shadow && "nav-shadow"}`}>
       <div className="nav-section">
@@ -15,14 +29,14 @@ const NavBar = () => {
           <div className="navs">
             <Link href="/">
               <a>
-                <div className="nav-link">
+                <div className={router.pathname == "/" ? "active" : "nav-link"}>
                   <p>Staking</p>
                 </div>
               </a>
             </Link>
             <Link href="/yieldpool">
               <a>
-                <div className="nav-link">
+                <div className={router.pathname == "/yieldpool" ? "active" : "nav-link"}>
                   <p>Yield Pool</p>
                 </div>
               </a>
@@ -31,7 +45,7 @@ const NavBar = () => {
 
           <div className="actions">
             <button
-              className="btn btn-black"
+              className="btn btn-black mr-2"
               style={{
                 marginLeft: 30,
                 display: "flex",
@@ -41,12 +55,16 @@ const NavBar = () => {
             >
               Connect Wallet
             </button>
-            <button>
+            <button onClick={openModal}
+              className='modal-btn'>
               <Icons name="triple-dot" />
             </button>
           </div>
         </div>
       </div>
+      { toggleModal && 
+        <NavbarModalComp />
+      }
     </div>
   );
 };

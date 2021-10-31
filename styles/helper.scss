@@ -84,6 +84,12 @@
   line-height: 63px;
   letter-spacing: -0.05em;
 }
+.heading-smaller {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: -0.07em;
+}
 .font-large {
   font-size: 24px;
   font-weight: 600;
@@ -93,6 +99,10 @@
 .font-regular {
   font-size: 18px;
 }
+
+.font-bold {
+  font-weight: bold;
+}
 .text-light {
   color: #808080;
   font-weight: 400;
@@ -101,6 +111,9 @@
 }
 .text-small {
   font-size: 16px;
+}
+.text-smaller {
+  font-size: 14px;
 }
 .color-white {
   color: #ffffff;
@@ -121,6 +134,34 @@
   border: 1px solid #000;
   border-radius: 25px;
 }
+.bord-rad-10 {
+  border-radius: 10px;
+}
+
+.bord-right {
+  border-right: 1px solid #000;
+}
+.bord-left {
+  border-left: 1px solid #000;
+}
+.bord-green {
+  border: 2px solid green;
+}
+
+// font color
+
+.tcolor-green {
+  color: green;
+}
+
+//background -color
+.bg-light-green {
+  background-color: rgba(22, 245, 40, 0.23);
+}
+.bg-green {
+  background-color: green;
+}
+
 //flex
 .flex {
   display: flex;
@@ -137,6 +178,13 @@
 .align-center {
   align-items: center;
 }
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
 
 //width
 .fit-content {
@@ -144,6 +192,12 @@
 }
 .w-25 {
   width: 25%;
+}
+.w-30 {
+  width: 30%;
+}
+.w-40 {
+  width: 40%;
 }
 .w-50 {
   width: 50%;
@@ -168,6 +222,39 @@
 }
 .w-100 {
   width: 100%;
+}
+
+// height 
+
+.h-10 {
+  height: 10%;
+}
+.h-20 {
+  height: 20%;
+}
+.h-30 {
+  height: 30%;
+}
+.h-40 {
+  height: 40%;
+}
+.h-50 {
+  height: 50%;
+}
+.h-60 {
+  height: 60%;
+}
+.h-70 {
+  height: 70%;
+}
+.h-80 {
+  height: 80%;
+}
+.h-90 {
+  height: 90%;
+}
+.h-100 {
+  height: 100%;
 }
 
 //margin
@@ -233,9 +320,11 @@
   margin-left: 50px;
 }
 
-
 // padding
 
+.pb-half {
+  padding-bottom: 5px;
+}
 .pb-1 {
   padding-bottom: 10px;
 }
@@ -250,6 +339,9 @@
 }
 .pb-5 {
   padding-bottom: 50px;
+}
+.pt-half {
+  padding-top: 5px;
 }
 .pt-1 {
   padding-top: 10px;
@@ -266,6 +358,9 @@
 .pt-5 {
   padding-top: 50px;
 }
+.pr-half {
+  padding-right: 5px;
+}
 .pr-1 {
   padding-right: 10px;
 }
@@ -280,6 +375,9 @@
 }
 .pr-5 {
   padding-right: 50px;
+}
+.pl-half {
+  padding-left: 5px;
 }
 .pl-1 {
   padding-left: 10px;
