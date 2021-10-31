@@ -9,9 +9,9 @@ const YieldPoolComp = () => {
             <table className='styled-table'>
                 <thead>
                     <tr>
-                        <th width="150px">Date <Icon name='ChevronArrow1' size={15} /></th>
+                        <th width="150px">Date &nbsp; <Icon name='ChevronArrow1' size={15} /></th>
                         <th width="80px">Coin</th>
-                        <th>Amount <Icon name='ChevronArrow' size={15} /></th>
+                        <th>Amount &nbsp;<Icon name='ChevronArrow' size={15} /></th>
                         <th>Est. APY</th>
                         <th width="150px">Lockup period</th>
                         <th width="140px">Cum. interest</th>

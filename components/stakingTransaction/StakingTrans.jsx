@@ -10,9 +10,9 @@ const StakingTransactionComp = () => {
             <table className='styled-table'>
                 <thead>
                     <tr>
-                        <th width="300px">Date <Icon name='ChevronArrow1' size={13}  color="#000"/></th>
+                        <th width="300px">Date &nbsp; <Icon name='ChevronArrow1' size={13}  color="#000"/></th>
                         <th>Tokens</th>
-                        <th width="300px">Staked AVS <Icon name='ChevronArrow' size={13} color="#000" /></th>
+                        <th width="300px">Staked AVS &nbsp; <Icon name='ChevronArrow' size={13} color="#000" /></th>
                         <th width="300px">Rewards Earned</th>
                     </tr>
                 </thead>

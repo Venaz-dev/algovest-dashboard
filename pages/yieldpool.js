@@ -76,7 +76,7 @@ export default function YieldPoolPage() {
                 size={20}
                 className="icon"
                 color="#fff"
-              />
+              /> &nbsp;
               Export
             </button>
           </div>

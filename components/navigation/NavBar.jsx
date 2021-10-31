@@ -63,7 +63,10 @@ const NavBar = () => {
         </div>
       </div>
       { toggleModal && 
-        <NavbarModalComp />
+        <NavbarModalComp 
+          toggleModal={toggleModal} 
+          setToggleModal={setToggleModal}
+        />
       }
     </div>
   );
