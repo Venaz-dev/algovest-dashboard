@@ -31,20 +31,23 @@ const YieldPoolComp = () => {
 
 export default YieldPoolComp;
 
-export const YieldPoolTransTableSchema = ({date, coin, amount, est_pay, lockup_period, cum_interest, accrue_days, statuss, position}) => {
+export const YieldPoolTransTableSchema = ({date, coin, amount, est_pay, lockup_period, cum_interest, accrued_days, no_of_days, statuss, position}) => {
   return (
+            <>
                   <tr>
-                      <td>{date}</td>
-                      <td>{coin}</td>
-                      <td>{amount}</td>
-                      <td>{est_pay}</td>
-                      <td>{lockup_period}</td>
-                      <td>{cum_interest}
-                        {/* <td>Accrue days: {accrue_days}</td> */}
-                      </td>
-                      <td>{statuss}</td>
-                      <td>{position}</td>
+                      <td rowspan='2'>{date}</td>
+                      <td rowspan='2'>{coin}</td>
+                      <td rowspan='2'>{amount}</td>
+                      <td rowspan='2'>{est_pay}</td>
+                      <td rowspan='2'>{lockup_period}</td>
+                      <td>{cum_interest}</td>
+                      <td rowspan='2'>{statuss}</td>
+                      <td rowspan='2'>{position}</td>
                   </tr>
+                  <tr>
+                        <td style={{fontSize:11}}>{accrued_days} <span>{no_of_days}</span></td>
+                  </tr>
+            </>
   )
 };
 
@@ -58,9 +61,10 @@ const yieldPoolDetails = [
       est_pay: "40%",
       lockup_period: "8 Weeks",
       cum_interest: "0.51942",
-      statuss: "active",
-      position: "claim",
-      accrue_days: "10days",
+      statuss: "Active",
+      position: "Claim",
+      accrued_days: 'Accrue days:',
+      no_of_days: "10days",
   },
   {
       id: 2,
@@ -70,9 +74,10 @@ const yieldPoolDetails = [
       est_pay: "60%",
       lockup_period: "16 Weeks",
       cum_interest: "2.76403",
-      statuss: "done",
-      position: "claimed",
-      accrue_days: "112days"
+      statuss: "Done",
+      position: "Claimed",
+      accrued_days: 'Accrue days:',
+      no_of_days: "112days",
   },
   {
       id: 3,
@@ -82,9 +87,10 @@ const yieldPoolDetails = [
       est_pay: "80%",
       lockup_period: "24 Weeks",
       cum_interest: "17.13092",
-      statuss: "done",
-      position: "claimed",
-      accrue_days: "169days"
+      statuss: "Done",
+      position: "Claimed",
+      accrued_days: 'Accrue days:',
+      no_of_days: "169days",
   },
   
 ]
