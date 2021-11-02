@@ -69,6 +69,16 @@
   }
 }
 
+.btn-gray {
+  background-color: #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: darken($color: #eaeaea, $amount: 20);
+  }
+}
+
 // padding
 
 // headings
@@ -106,7 +116,7 @@
 .text-light {
   color: #808080;
   font-weight: 400;
-  line-height: 28px;
+  // line-height: 28px;
   letter-spacing: -0.03em;
 }
 .text-small {
@@ -224,7 +234,7 @@
   width: 100%;
 }
 
-// height 
+// height
 
 .h-10 {
   height: 10%;

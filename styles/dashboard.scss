@@ -6,7 +6,11 @@
   .description {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
+    .text-light {
+      font-size: 14px;
+      line-height: 18px;
+    }
     .btn {
       width: 100px;
     }
@@ -30,6 +34,24 @@
       padding: 24px;
       padding-top: 5px;
     }
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 10%;
+      margin-bottom: 20px;
+      p {
+        display: flex;
+        align-items: center;
+      }
+      span {
+        color: $primary;
+        display: flex;
+        align-items: center;
+      }
+      span.text-light {
+        color: #222 !important;
+      }
+    }
     .stats {
       p {
         padding: 10px 0;
@@ -43,11 +65,19 @@
         font-weight: 700;
       }
     }
-    
+    .w-40 {
+      .graph {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+    }
   }
 
   .input_cont {
     padding-left: 25px;
+    border-color: #c4c4c4 !important;
+    overflow: hidden;
 
     input {
       height: 35px;
@@ -59,8 +89,9 @@
 
       &::placeholder {
         color: gray;
-        font-size: 1.05rem;
-        opacity: 0.6;
+        // font-size: 1.05rem;
+        // opacity: 0.6;
+        font-size: 16px;
       }
     }
   }
@@ -71,7 +102,6 @@
     box-sizing: border-box;
     border-radius: 10px;
     padding: 36px 24px;
-
 
     .styled-table {
       margin-top: 20px;
@@ -117,7 +147,6 @@
     .styled-table {
       border-collapse: collapse;
       margin-top: 20px;
-
 
       thead tr {
         text-align: left;
