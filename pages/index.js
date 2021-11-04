@@ -1,11 +1,10 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import Image from "next/image";
 import Layout from "../components/navigation/Layout";
-import TextInput from "../components/inputs/TextInput";
 import Icon from "../components/common/Icons";
-import StakingTransactionComp from "../components/stakingTransaction/StakingTrans";
-import YieldPoolComp from "../components/yieldPool/YieldPool";
+import StakingTransactionComp, {
+  TableComp,
+} from "../components/stakingTransaction/StakingTrans";
 import SearchInput from "../components/inputs/SearchInput";
 import LineChartCompOne from "../components/chart/Chart";
 import { StakeModalComp } from "../components/modals/StakeModal";
@@ -155,6 +154,7 @@ export default function Home() {
       </div>
 
       <StakeModalComp showModal={showModal} closeModal={closeModal} />
+      <TableComp />
     </Layout>
   );
 }
