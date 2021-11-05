@@ -167,7 +167,7 @@ function Table({ columns, data }) {
             accessor: d => (
               <div className="wrapper">
                   <div style={{ color: 'green', fontSize: 20, }}>{d.rewards}</div>
-                  <div style={{ fontSize: 13, }}>Accrued: {d.accrued}</div>
+                  <div style={{ fontSize: 13, }}>Accrued days: {d.accrued}</div>
               </div>
             )
             },

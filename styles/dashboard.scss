@@ -222,16 +222,16 @@
     }
 
     th {
-      margin: 0;
+      margin: 0 10px;
       padding: 0.5rem 0;
-      padding-right: 5.4rem;
+      padding-right: 5rem;
       border-bottom: 1px solid #000;
       text-align: left;
     }
     td {
-      margin: 0;
+      margin: 0 10px;
       padding: 0.5rem 0;
-      padding-right: 5.4rem;
+      padding-right: 4rem;
       border-bottom: 1px solid #cec;
 
       :last-child {
@@ -248,49 +248,56 @@
     color: red;
   }
 
-  .yield_table {
-    padding: 1rem;
-    width: 100%;
-    margin: 10px auto;
+  .OrangeColor {
+    color: orange;
+  }
+}
 
-    table {
-      border-spacing: 0;
-      border: none;
-      border-collapse: collapse;
+.yield_table {
+  padding: 1rem;
+  width: 100%;
+  margin: 10px auto;
 
-      tr {
-        :last-child {
-          td {
-            border-bottom: 0;
-          }
-        }
-      }
+  table {
+    border-spacing: 0;
+    border: none;
+    border-collapse: collapse;
 
-      th {
-        margin: 0;
-        padding: 0.5rem 0;
-        padding-right: 4rem;
-        border-bottom: 1px solid #000;
-        text-align: left;
-      }
-      td {
-        margin: 0;
-        padding: 0.5rem 0;
-        padding-right: 4rem;
-        border-bottom: 1px solid #cec;
-
-        :last-child {
-          border-right: 0;
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
         }
       }
     }
 
-    .GreenColor {
-      color: green;
+    th {
+      margin: 0;
+      padding: 0.5rem 0;
+      padding-right: 1rem;
+      border-bottom: 1px solid #000;
+      text-align: left;
     }
+    td {
+      margin: 0;
+      padding: 0.5rem 0;
+      padding-right: 1.5rem;
+      border-bottom: 1px solid #cec;
 
-    .OrangeColor {
-      color: orange;
+      :last-child {
+        border-right: 0;
+      }
     }
+  }
+  .GreenColor {
+    color: green;
+  }
+
+  .RedColor {
+    color: red;
+  }
+
+  .OrangeColor {
+    color: orange;
   }
 }

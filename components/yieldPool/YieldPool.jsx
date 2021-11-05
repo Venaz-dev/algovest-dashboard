@@ -130,10 +130,10 @@ function Table({ columns, data }) {
     {/* Add a sort direction indicator */}
     <span>
         {column.isSorted
-        ? column.isSortedDesc
-        ? <Icon name="ChevronArrow1" size={13} color="#808080" />
-        : <Icon name="ChevronArrow" size={13} color="#000" />
-        : ''}
+            ? column.isSortedDesc
+                ? <Icon name="ChevronArrow1" size={13} color="#808080" />
+                : <Icon name="ChevronArrow" size={13} color="#000" />
+            : ''}
     </span>
     </th>
     ))}
@@ -160,7 +160,7 @@ function Table({ columns, data }) {
     const columns = React.useMemo(
     () => [
     {
-    Header: 'Yield Pool',
+    Header: ' ',
     columns: [
     {
     Header: 'Date',
@@ -187,27 +187,25 @@ function Table({ columns, data }) {
     accessor: c => (
          <div className="wrapper">
             <div style={{ color: 'green', fontSize: 20, }}>{c.cum_interest}</div>
-            <div style={{ fontSize: 13, }}>Accrued: {c.accrued_days}</div>
+            <div style={{ fontSize: 13, }}>Accrued days: {c.accrued_days}</div>
         </div>
     )
     },
     {
     Header: 'Status',
-    accessor: d => (
-           <div style={{ borderRadius: 20, }} className="wrapper">
-               <span className={d.value === "Active" ? "RedColor" : null || d.value === "Done" ? 'GreenColor' : null}>
-                    {d.statuss}
+    accessor: s => (
+               <span style={{ fontSize: 12, padding: 7, borderRadius: 15, backgroundColor: `${s.statuss === 'Active' ? 'yellow' : null || s.statuss === 'Done' ? 'rgb(212, 252, 212)' : null }`, color: `${s.statuss === 'Active' ? 'orange' : null || s.statuss === 'Done' ? 'green' : null }`,}}>
+                    {s.statuss}
                </span>
-            </div>
       )
     },
     {
     Header: ' ',
     accessor: 'position',
-    Cell: s => (
-    <span className={s.value === "Claim" ? "RedColor" : null || s.value === "Claimed" ? 'GreenColor' : null}>
-    {s.value}
-    </span>
+    Cell: p => (
+            <span className={p.value === "Claim" ? "RedColor" : null || p.value === "Claimed" ? null : 'GreenColor'}>
+                {p.value}
+             </span>
     ),
     },
     ],
@@ -219,10 +217,10 @@ function Table({ columns, data }) {
     const data = React.useMemo(() => [
         {
             id: 1,
-            date: "21. 09. 2021",
+            date: "21-09-2021",
             coin: "USDC",
             amount: "102.50435",
-            est_pay: "40%",
+            est_apy: "40%",
             lockup_period: "8 Weeks",
             cum_interest: "0.51942",
             statuss: "Active",
@@ -232,10 +230,10 @@ function Table({ columns, data }) {
         },
         {
             id: 2,
-            date: "14. 09. 2021",
+            date: "14-09-2021",
             coin: "USDC",
             amount: "76.50693",
-            est_pay: "60%",
+            est_apy: "60%",
             lockup_period: "16 Weeks",
             cum_interest: "2.76403",
             statuss: "Done",
@@ -244,10 +242,10 @@ function Table({ columns, data }) {
         },
         {
             id: 3,
-            date: "02. 09. 2021",
+            date: "02-09-2021",
             coin: "USDC",
             amount: "78.9583",
-            est_pay: "80%",
+            est_apy: "80%",
             lockup_period: "24 Weeks",
             cum_interest: "17.13092",
             statuss: "Done",
