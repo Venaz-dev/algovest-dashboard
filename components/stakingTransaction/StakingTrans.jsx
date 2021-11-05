@@ -91,130 +91,125 @@ const transactionDetails = [
   },
 ];
 
-function Table({columns, data}) {
+function Table({ columns, data }) {
+  // Use the state and functions returned from useTable to build your UI
   const {
-    getTableProps, getTableBodyProps, headerGroups, rows, prepareRow,
+  getTableProps,
+  getTableBodyProps,
+  headerGroups,
+  rows,
+  prepareRow,
   } = useTable({
-  columns, data, 
-}, useSortBy);
-
+  columns,
+  data,
+  }, useSortBy)
+  
+  // Render the UI for your table
   return (
-    <table {...getTableProps()}
-      border={1}
-      style={{borderCollapse: "collapse", width: "80%"}}
-    >
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {column.render("Header")}
-                    <span> {
-                      column.isSorted
-                        ? column.isSortedDesc
-                            ? ' ?'
-                            : ' ?'
-                        : ''
-                      } </span>
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map(
-          (row, i) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+  <table {...getTableProps()}>
+  <thead>
+  {headerGroups.map(headerGroup => (
+  <tr {...headerGroup.getHeaderGroupProps()}>
+  {headerGroup.headers.map(column => (
+  // Add the sorting props to control sorting. For this example
+  // we can add them into the header props
+  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+  {column.render('Header')}
+  {/* Add a sort direction indicator */}
+  <span>
+  {column.isSorted
+  ? column.isSortedDesc
+  ? <Icon name="ChevronArrow1" size={13} color="#808080" />
+  : <Icon name="ChevronArrow" size={13} color="#000" />
+  : ''}
+  </span>
+  </th>
+  ))}
+  </tr>
+  ))}
+  </thead>
+  <tbody {...getTableBodyProps()}>
+  {rows.map((row, i) => {
+  prepareRow(row)
+  return (
+  <tr {...row.getRowProps()}>
+  {row.cells.map(cell => {
+  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+  })}
+  </tr>
   )
-}
-
-
-export function TableComp() {
-
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Date",
-        columns: [
-          {
-            Header: "date",
-            accessor: "21. 09. 2021"
-          },
-          
-        ]
-      },
-      {
-        Header: "Tokens",
-        columns: [
-          {
-            Header: "token",
-            accessor: "AVS"
-          },
-        ]
-      },
-      {
-        Header: "Staked AVS",
-        columns: [
-          {
-            accessor: "1,740.00"
-          },
-          // {
-          //   accessor: "25,620.00"
-          // },
-        ]
-      },
-      {
-        Header: "Rewards Earned",
-        columns: [
-          {
-            accessor: "0.51942"
-          },
-          
-        ]
-      },
-      {
-        Header: "-",
-        columns: [
-          {
-            accessor: "Unstake"
-          },
-        
-        ]
-      }
-    ], []
-  );
-
-  const data = useMemo(
-    () => [
-      {
-        id: 1,
-        date: "21-09-2021",
-        token: "AVS",
-        staked_AVS: "0.9323",
-        rewrds: "2.3434",
-        status: "Unstake",
-      },
-      {
-        id: 2,
-        date: "18-08-2021",
-        token: "AVS",
-        staked_AVS: "20.3543",
-        rewrds: "0.8973",
-        status: "Paid out",
-      },
-    ], []
-  );
-
-  return <Table columns={columns} data={data} />
+  })}
+  </tbody>
+  </table>
+  )
+  }
+  
+  export function TableComp() {
+      const columns = React.useMemo(
+        () => [
+                {
+                Header: ' ',
+                columns: [
+            {
+              Header: 'Date',
+              accessor: 'date',
+            },
+            {
+              Header: 'Tokens',
+              accessor: 'token',
+            },
+            {
+              Header: 'Staked AVS',
+              accessor: 'staked',
+            },
+            {
+              Header: 'Rewards Earned',
+            accessor: d => (
+              <div className="wrapper">
+                  <div style={{ color: 'green', fontSize: 20, }}>{d.rewards}</div>
+                  <div style={{ fontSize: 13, }}>Accrued: {d.accrued}</div>
+              </div>
+            )
+            },
+            {
+              Header: ' ',
+              accessor: 'status',
+              Cell: s => (
+                <span className={s.value === "Unstake" ? "RedColor" : null || s.value === "Paid out" ? null : "GreenColor"}>
+                    {s.value}
+                </span>
+              ),
+            },
+          ],
+        }
+      ], []
+    )
+  
+  const data = React.useMemo(() => [
+    {
+      id: 1,
+      date: "21-09-2021",
+      token: "AVS",
+      staked: "1,740.00",
+      rewards: "0.51942",
+      status: "Unstake",
+      accrued: "5 days"
+    },
+    {
+      id: 2,
+      date: "18-08-2021",
+      token: "AVS",
+      staked: "25,620.00",
+      rewards: "3.76032",
+      status: "Paid out",
+      accrued: "180 days"
+    }
+  ], [])
+  
+  return (
+      <div className='stake_table'>
+        <Table columns={columns} data={data} />
+      </div>
+  )
 };
-
+  

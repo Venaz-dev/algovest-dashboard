@@ -202,3 +202,95 @@
     }
   }
 }
+
+.stake_table {
+  padding: 1rem;
+  width: 100%;
+  margin: 10px auto;
+
+  table {
+    border-spacing: 0;
+    border: none;
+    border-collapse: collapse;
+
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    th {
+      margin: 0;
+      padding: 0.5rem 0;
+      padding-right: 5.4rem;
+      border-bottom: 1px solid #000;
+      text-align: left;
+    }
+    td {
+      margin: 0;
+      padding: 0.5rem 0;
+      padding-right: 5.4rem;
+      border-bottom: 1px solid #cec;
+
+      :last-child {
+        border-right: 0;
+      }
+    }
+  }
+
+  .GreenColor {
+    color: green;
+  }
+
+  .RedColor {
+    color: red;
+  }
+
+  .yield_table {
+    padding: 1rem;
+    width: 100%;
+    margin: 10px auto;
+
+    table {
+      border-spacing: 0;
+      border: none;
+      border-collapse: collapse;
+
+      tr {
+        :last-child {
+          td {
+            border-bottom: 0;
+          }
+        }
+      }
+
+      th {
+        margin: 0;
+        padding: 0.5rem 0;
+        padding-right: 4rem;
+        border-bottom: 1px solid #000;
+        text-align: left;
+      }
+      td {
+        margin: 0;
+        padding: 0.5rem 0;
+        padding-right: 4rem;
+        border-bottom: 1px solid #cec;
+
+        :last-child {
+          border-right: 0;
+        }
+      }
+    }
+
+    .GreenColor {
+      color: green;
+    }
+
+    .OrangeColor {
+      color: orange;
+    }
+  }
+}

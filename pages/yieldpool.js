@@ -1,21 +1,21 @@
 import Head from "next/head";
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import Layout from "../components/navigation/Layout";
 import Icon from "../components/common/Icons";
-import YieldPoolComp from "../components/yieldPool/YieldPool";
+import YieldPoolComp, { YieldTable } from "../components/yieldPool/YieldPool";
 import SearchInput from "../components/inputs/SearchInput";
 import LineChartCompOne from "../components/chart/Chart";
 import YieldPoolModalComp from "../components/modals/YieldPoolModal";
 
 export default function YieldPoolPage() {
   const [showModal, setShowModal] = useState(false);
-    
-    const openModal = () => {
-        setShowModal(!showModal);
-    }
-    const closeModal = () => {
-        setShowModal(!showModal);
-    }
+
+  const openModal = () => {
+    setShowModal(!showModal);
+  };
+  const closeModal = () => {
+    setShowModal(!showModal);
+  };
   return (
     <Layout>
       <div className="dashboard">
@@ -27,8 +27,9 @@ export default function YieldPoolPage() {
               protection. Pool More, Earn More!
             </p>
           </div>
-          <button className="btn btn-primary"
-              onClick={openModal}>Desposit USDC</button>
+          <button className="btn btn-primary" onClick={openModal}>
+            Desposit USDC
+          </button>
         </div>
         <div className="pool_stats_container flex">
           <div className="w-50">
@@ -76,14 +77,15 @@ export default function YieldPoolPage() {
                 size={20}
                 className="icon"
                 color="#fff"
-              /> &nbsp;
-              Export
+              />{" "}
+              &nbsp; Export
             </button>
           </div>
-          <YieldPoolComp />
+          {/* <YieldPoolComp /> */}
+          <YieldTable />
         </div>
       </div>
-      <YieldPoolModalComp showModal={showModal} closeModal={closeModal}/>
+      <YieldPoolModalComp showModal={showModal} closeModal={closeModal} />
     </Layout>
   );
 }
