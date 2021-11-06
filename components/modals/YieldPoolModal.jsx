@@ -72,7 +72,7 @@ export const YieldPoolModal = () => {
                     <div className='content-tabs'>
                         <YieldPoolModalCompOne toggleTab={toggleTab}/> 
                         <YieldPoolModalCompTwo toggleTab={toggleTab}/> 
-                        <YieldPoolModalCompThree toggleTab={toggleTab}/>
+                        <YieldPoolModalCompThree toggleTab={toggleTab} />
                     </div>
         </div>
             
@@ -94,7 +94,7 @@ const YieldPoolModalCompOne = ({toggleTab}) => {
                 size={20}
                 icon_name="CopyIcon"
                 color='green'
-                className='bord-1 bord-rad-10 mt-3'
+                className='labels bord-1 bord-rad-10 mt-3'
             />
 
             <YieldModalLabel 
@@ -105,7 +105,7 @@ const YieldPoolModalCompOne = ({toggleTab}) => {
                 size={20}
                 icon_name='CopyIcon'
                 color='green'
-                className='bord-green bord-rad-10 mt-3 bg-light-green'
+                className='labels bord-green bord-rad-10 mt-3 bg-light-green'
             />
 
             <YieldModalLabel 
@@ -115,7 +115,7 @@ const YieldPoolModalCompOne = ({toggleTab}) => {
                 size={20}
                 icon_name='CopyIcon'
                 color='green'
-                className='bord-1 bord-rad-10 mt-3'
+                className='labels bord-1 bord-rad-10 mt-3'
             />
 
         </div>
