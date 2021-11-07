@@ -4,9 +4,10 @@ import {ModalHeadingSection, ModalInputSection, EstimationSection } from './Stak
 
 
 //custom Modal components for the Yield Page Modals
-const YieldModalLabel = ({className, icon_name, token, color, lockup_period, recommendation, stake_percent, size}) => {
+const YieldModalLabel = ({className, onClick, icon_name, token, color, lockup_period, recommendation, stake_percent, size}) => { 
+
     return (
-        <div className={className}>
+        <div className={className} onClick={onClick}>
             <div className='flex pl-2 pr-2 pt-1 align-center'>
                 <p className="heading-small mr-1 tcolor-green"> {stake_percent} </p>
                 <div className="recommend_box text-smaller color-white bg-green bord-rad-10 w-30"><p>{recommendation}</p></div>
@@ -52,15 +53,17 @@ export default YieldPoolModalComp
 // Modals for YieldPool
 export const YieldPoolModal = () => {
     const [toggleTab, setToggleTab] = useState(1);
-    
+    const [selectOption, setSelectOption] = useState(0);
+
     const switchTab = (ind) => {
             setToggleTab(ind);
     }
+
     return (
         <div className='modal-container w-30'>    
                     <div className='modal-tabs flex'>
                         <div 
-                            className={toggleTab === 1 ? 'tabs active-tabs' : "tabs"}
+                            className={toggleTab === 1 ? 'tabs active-tabs' : "tabs active-tabs"}
                             onClick={() => switchTab(1)}> </div>
                         <div 
                             className={toggleTab === 2 ? 'tabs active-tabs' : "tabs"}
@@ -70,9 +73,9 @@ export const YieldPoolModal = () => {
                             onClick={() => switchTab(3)}> </div>
                     </div>
                     <div className='content-tabs'>
-                        <YieldPoolModalCompOne toggleTab={toggleTab}/> 
-                        <YieldPoolModalCompTwo toggleTab={toggleTab}/> 
-                        <YieldPoolModalCompThree toggleTab={toggleTab} />
+                        <YieldPoolModalCompOne toggleTab={toggleTab} setSelectOption={setSelectOption} switchTab={switchTab}/> 
+                        <YieldPoolModalCompTwo toggleTab={toggleTab} switchTab={switchTab}/> 
+                        <YieldPoolModalCompThree toggleTab={toggleTab}/>
                     </div>
         </div>
             
@@ -81,7 +84,8 @@ export const YieldPoolModal = () => {
 
 
 
-const YieldPoolModalCompOne = ({toggleTab}) => {
+const YieldPoolModalCompOne = ({toggleTab, switchTab, setSelectOption}) => {
+
     return (
         <div className={toggleTab === 1 ? 'content active-content' : "content"}>
 
@@ -95,6 +99,7 @@ const YieldPoolModalCompOne = ({toggleTab}) => {
                 icon_name="CopyIcon"
                 color='green'
                 className='labels bord-1 bord-rad-10 mt-3'
+                onClick={() => {setSelectOption(1); switchTab(2)}}
             />
 
             <YieldModalLabel 
@@ -106,6 +111,7 @@ const YieldPoolModalCompOne = ({toggleTab}) => {
                 icon_name='CopyIcon'
                 color='green'
                 className='labels bord-green bord-rad-10 mt-3 bg-light-green'
+                onClick={() => {setSelectOption(2); switchTab(2)}}
             />
 
             <YieldModalLabel 
@@ -116,13 +122,14 @@ const YieldPoolModalCompOne = ({toggleTab}) => {
                 icon_name='CopyIcon'
                 color='green'
                 className='labels bord-1 bord-rad-10 mt-3'
+                onClick={() => {setSelectOption(1); switchTab(2)}}
             />
 
         </div>
     )
 }
 
-const YieldPoolModalCompTwo = ({toggleTab}) => {
+const YieldPoolModalCompTwo = ({toggleTab, switchTab }) => {
     return (
         <div className={toggleTab === 2 ? 'content active-content' : "content"}>
 
@@ -140,7 +147,9 @@ const YieldPoolModalCompTwo = ({toggleTab}) => {
                 </div>
             </div>
             <div className='modal-btn'>
-                <button className='btn btn-primary mt-4'> Connect Wallet </button>
+                <button 
+                    onClick={() => switchTab(3)}
+                    className='btn btn-primary mt-4'> Connect Wallet </button>
             </div> 
 
             <EstimationSection icon_name='CopyIcon' color='green' size={45} amount='10,560.00'  estimated_reward='40%% (APY) Estimated Earnings'/>
@@ -148,7 +157,7 @@ const YieldPoolModalCompTwo = ({toggleTab}) => {
     )
 }
 
-const Wallet = ({walletType, color, size, icon_name}) => {
+export const Wallet = ({walletType, color, size, icon_name}) => {
     return (
             <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
                 <Icon name={icon_name} size={size} color={color} />

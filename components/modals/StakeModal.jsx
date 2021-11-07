@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Icon from '../common/Icons';
+import Wallet from './YieldPoolModal';
 
 
 // Modal Custom Components
@@ -73,14 +74,14 @@ const StakeModal = () => {
             <div className='modal-container'>
                 <div className='modal-tabs'>
                     <div 
-                        className={toggleState === 1 ? 'tabs active-tabs' : "tabs"}
+                        className={toggleState === 1 ? 'tabs active-tabs' : "tabs active-tabs"}
                         onClick={() => toggleTab(1)}> </div>
                     <div 
                         className={toggleState === 2 ? 'tabs active-tabs' : "tabs"}
                         onClick={() => toggleTab(2)}> </div>
                 </div>
                 <div className='content-tabs'>
-                    <StakeModalCompOne toggleState={toggleState}/>
+                    <StakeModalCompOne toggleState={toggleState} toggleTab={toggleTab}/>
                     <StakeModalCompTwo toggleState={toggleState}/>
                 </div>
                 
@@ -90,7 +91,7 @@ const StakeModal = () => {
 
 
 //component for Modal Tab 1
-const StakeModalCompOne = ({toggleState}) => {
+const StakeModalCompOne = ({toggleState, toggleTab}) => {
     return (
         <div className={toggleState === 1 ? 'content active-content' : "content"}>
 
@@ -99,7 +100,9 @@ const StakeModalCompOne = ({toggleState}) => {
             <ModalInputSection token='AVS' value='10,000.00' placeholder='' icon_name='plus-sign' size={20} /> 
                 
             <div className='modal-btn'>
-                <button className='btn btn-primary mt-4'> Connect Wallet </button>
+                <button 
+                    onClick={() => toggleTab(2)}
+                    className='btn btn-primary mt-4'> Connect Wallet </button>
             </div>            
             <EstimationSection icon_name='CopyIcon' color='green' size={45} amount='10,560.00'  estimated_reward='6.78% (APY) Estimated Reward'/>
         </div>
@@ -110,7 +113,9 @@ const StakeModalCompOne = ({toggleState}) => {
 const StakeModalCompTwo = ({toggleState}) => {
     return (
         <div className={toggleState === 2 ? 'content active-content' : "content"}>
-            <h1>Tab 2 </h1>
+            <ModalHeadingSection heading_text='Select Wallet' subhead_text='Connect your wallet to complete transaction' />
+            <Wallet walletType="MetaMask" size={40} icon_name='CopyIcon' color='green'/>
+            <Wallet walletType="WalletConnect" size={40} icon_name='CopyIcon' color='green'/>
         </div>
     )
 }
