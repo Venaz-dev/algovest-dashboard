@@ -73,7 +73,7 @@ function Table({ columns, data }) {
   );
 }
 
-export function YieldTable() {
+const YieldTable = () => {
   const columns = React.useMemo(
     () => [
       {
@@ -202,4 +202,6 @@ export function YieldTable() {
       <Table columns={columns} data={data} />
     </div>
   );
-}
+};
+
+export default YieldTable;

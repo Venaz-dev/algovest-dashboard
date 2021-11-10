@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useState } from "react";
 import Layout from "../components/navigation/Layout";
 import Icon from "../components/common/Icons";
-import YieldPoolComp, { YieldTable } from "../components/yieldPool/YieldPool";
+import YieldTable from "../components/yieldPool/YieldPool";
 import SearchInput from "../components/inputs/SearchInput";
 import LineChartCompOne from "../components/chart/Chart";
 import YieldPoolModalComp from "../components/modals/YieldPoolModal";
