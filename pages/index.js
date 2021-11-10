@@ -150,11 +150,11 @@ export default function Home() {
           </div>
 
           {/* <StakingTransactionComp /> */}
-          <TableComp />
+          {/* <TableComp /> */}
         </div>
       </div>
 
-      <StakeModalComp showModal={showModal} closeModal={closeModal} />
+      {/* <StakeModalComp showModal={showModal} closeModal={closeModal} /> */}
     </Layout>
   );
 }
