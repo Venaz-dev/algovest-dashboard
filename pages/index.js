@@ -154,7 +154,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* <StakeModalComp showModal={showModal} closeModal={closeModal} /> */}
+      <StakeModalComp showModal={showModal} closeModal={closeModal} />
     </Layout>
   );
 }

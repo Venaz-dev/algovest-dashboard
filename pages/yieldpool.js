@@ -85,7 +85,7 @@ export default function YieldPoolPage() {
           {/* <YieldTable /> */}
         </div>
       </div>
-      {/* <YieldPoolModalComp showModal={showModal} closeModal={closeModal} /> */}
+      <YieldPoolModalComp showModal={showModal} closeModal={closeModal} />
     </Layout>
   );
 }
