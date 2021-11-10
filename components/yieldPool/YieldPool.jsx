@@ -28,7 +28,7 @@ function Table({ columns, data }) {
       <thead>
         {headerGroups.map((headerGroup, i) => (
           <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column, (i) => (
+            {headerGroup.headers.map((column, i) => (
               // Add the sorting props to control sorting. For this example
               // we can add them into the header props
               <th
@@ -58,7 +58,7 @@ function Table({ columns, data }) {
           prepareRow(row);
           return (
             <tr key={i} {...row.getRowProps()}>
-              {row.cells.map(cell, (i) => {
+              {row.cells.map((cell, i) => {
                 return (
                   <td key={i} {...cell.getCellProps()}>
                     {cell.render("cell")}
