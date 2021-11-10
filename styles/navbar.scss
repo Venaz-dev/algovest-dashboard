@@ -45,7 +45,7 @@
 
         .nav-link {
           padding: 15px 40px;
-          margin: 0 20px;
+          margin-right: 20px;
           border-radius: 100px;
           font-size: 14px;
           text-transform: uppercase;
@@ -73,15 +73,8 @@
         }
 
         .active {
-          padding: 15px 40px;
-          // margin: 0 20px;
-          border-radius: 100px;
-          font-size: 14px;
-          text-transform: uppercase;
-          position: relative;
-          transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-          width: fit-content;
           color: #222222;
+
           background-color: #f3f3f3;
           &::after {
             width: 100%;

@@ -38,7 +38,7 @@ const options = {
       position: "top",
     },
     title: {
-      display: true,
+      display: false,
       text: "98.3%",
       fontSize: "100",
       // position: 'left',

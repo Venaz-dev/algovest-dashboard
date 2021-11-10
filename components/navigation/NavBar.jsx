@@ -1,19 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { useScrollDetect } from "../../utils";
 import Icons from "../common/Icons";
-import NavbarModalComp from '../modals/NavbarModal';
+import NavbarModalComp from "../modals/NavbarModal";
 
 const NavBar = () => {
   const [toggleModal, setToggleModal] = useState(false);
-    
-    const openModal = () => {
-        setToggleModal(!toggleModal);
-    }
-    const closeModal = () => {
-        setToggleModal(!toggleModal);
-    }
+
+  const openModal = () => {
+    setToggleModal(!toggleModal);
+  };
+  const closeModal = () => {
+    setToggleModal(!toggleModal);
+  };
 
   const { shadow } = useScrollDetect();
 
@@ -29,14 +29,22 @@ const NavBar = () => {
           <div className="navs">
             <Link href="/">
               <a>
-                <div className={router.pathname == "/" ? "active" : "nav-link"}>
+                <div
+                  className={`nav-link ${
+                    router.pathname == "/" ? "active" : ""
+                  }`}
+                >
                   <p>Staking</p>
                 </div>
               </a>
             </Link>
             <Link href="/yieldpool">
               <a>
-                <div className={router.pathname == "/yieldpool" ? "active" : "nav-link"}>
+                <div
+                  className={`nav-link ${
+                    router.pathname == "/yieldpool" ? "active" : ""
+                  }`}
+                >
                   <p>Yield Pool</p>
                 </div>
               </a>
@@ -55,19 +63,18 @@ const NavBar = () => {
             >
               Connect Wallet
             </button>
-            <button onClick={openModal}
-              className='modal-btn'>
+            <button onClick={openModal} className="modal-btn">
               <Icons name="triple-dot" />
             </button>
           </div>
         </div>
       </div>
-      { toggleModal && 
-        <NavbarModalComp 
-          toggleModal={toggleModal} 
+      {toggleModal && (
+        <NavbarModalComp
+          toggleModal={toggleModal}
           setToggleModal={setToggleModal}
         />
-      }
+      )}
     </div>
   );
 };

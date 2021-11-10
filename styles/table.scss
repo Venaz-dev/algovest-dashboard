@@ -1,0 +1,12 @@
+.dashboard {
+  .MuiTablePagination-selectRoot {
+    display: none;
+  }
+  .MuiPaper-elevation2 {
+    box-shadow: none;
+    border-bottom: none;
+  }
+  .MuiTablePagination-root {
+    border-bottom: 0;
+  }
+}

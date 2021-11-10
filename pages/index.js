@@ -9,6 +9,7 @@ import SearchInput from "../components/inputs/SearchInput";
 import LineChartCompOne from "../components/chart/Chart";
 import { StakeModalComp } from "../components/modals/StakeModal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import StakingTable from "../components/tables/StakingTable";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -49,11 +50,17 @@ export default function Home() {
                     color="green"
                     className="mt-3"
                   />
-                  <span>4.43%</span> &nbsp; 14,302{" "}
+                  <span className="mr-1">4.43%</span>14,302
                 </p>
               </div>
               <div className="stat">
-                <p className="text-light">Total Staked AVS:</p> <p> 630,069</p>
+                <p className="text-light">Total Staked AVS:</p>{" "}
+                <p>
+                  <span className="mr-1">
+                    <Icon name="algovest" size={15} />
+                  </span>{" "}
+                  630,069
+                </p>
               </div>
               <div className="stat">
                 <p className="text-light">
@@ -117,40 +124,23 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* <p className="text-light text-small">
-              Stake AVS and earn high rewards
-            </p>
-            <div className="mb-4">
-              <TextInput
-                placeholder="1,000,000.90"
-                activeBorderColor="#06aa65"
-                beforeText="Amount of AVS to stake"
-              />
-            </div>
-            <div className="mb-4">
-              <TextInput
-                placeholder="1,000,000.90"
-                activeBorderColor="#06aa65"
-                beforeText="Amount of AVS to stake"
-              />
-            </div>
-            <button className="btn btn-primary">Stake Now</button> */}
+
         <div className="staking-content mt-5">
           <p className="font-regular mb-3"> Staking Transactions</p>
-          <div className="flex justify-between w-100">
+          <div className="flex justify-between w-100 mb-3">
             <SearchInput
               icon_name="SearchRightIcon"
               size={25}
               placeholder="Search for amount, APY or rewards"
             />
             <button className="btn btn-gray  w-25" style={{ fontSize: 17 }}>
-              <Icon name="DownloadIcon" size={20} className="icon" />
+              <Icon name="export" className="icon" />
               &nbsp; Export
             </button>
           </div>
 
           {/* <StakingTransactionComp /> */}
-          <TableComp />
+          <StakingTable />
         </div>
       </div>
 
