@@ -52,7 +52,7 @@ function Table({ columns, data }) {
               {row.cells.map((cell, i) => {
                 return (
                   <td key={i} {...cell.getCellProps()}>
-                    {cell.render("cell")}
+                    {cell.render("Cell")}
                   </td>
                 );
               })}
@@ -91,7 +91,7 @@ export function TableComp() {
       {
         Header: " ",
         accessor: "status",
-        cell: (s) => (
+        Cell: (s) => (
           <span
             className={
               s.value === "Unstake"
