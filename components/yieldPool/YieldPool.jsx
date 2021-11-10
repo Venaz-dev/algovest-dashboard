@@ -61,7 +61,7 @@ function Table({ columns, data }) {
               {row.cells.map(cell, (i) => {
                 return (
                   <td key={i} {...cell.getCellProps()}>
-                    {cell.render("Cell")}
+                    {cell.render("cell")}
                   </td>
                 );
               })}
@@ -136,7 +136,7 @@ const YieldTable = () => {
       {
         Header: " ",
         accessor: "position",
-        Cell: (p) => (
+        cell: (p) => (
           <span
             className={
               p.value === "Claim"
