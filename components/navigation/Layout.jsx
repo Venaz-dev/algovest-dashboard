@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <Head>
         <title>AlgoVest</title>
         <meta name="description" content="AlgoVest" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <NavBar />
       <div className="children">{children}</div>

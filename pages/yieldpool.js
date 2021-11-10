@@ -33,7 +33,7 @@ export default function YieldPoolPage() {
         </div>
         <div className="pool_stats_container flex">
           <div className="w-50">
-            <p className="font-large"> Pool's Stats</p>
+            <p className="font-large"> Pool&apos;s Stats</p>
             <div className="flex justify-between">
               <div className="stats left-content">
                 <p>Total Deposits</p>
