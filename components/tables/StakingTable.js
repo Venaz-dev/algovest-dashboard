@@ -1,21 +1,8 @@
 import React from "react";
 import MaterialTable from "material-table";
-import {
-  ThemeProvider as MuiThemeProvider,
-  createTheme,
-} from "@material-ui/core/styles";
-import tableIcons from "../common/materialicons/tableIcons";
+
+import TableIcons from "../common/materialicons/tableIcons";
 const StakingTable = () => {
-  const tableTheme = createTheme({
-    palette: {
-      primary: {
-        main: "rgba(0, 98, 152)",
-      },
-      secondary: {
-        main: "rgba(0, 98, 152)",
-      },
-    },
-  });
   const tableColumns = [
     {
       title: "Date",
