@@ -150,7 +150,7 @@ export default function Home() {
           </div>
 
           {/* <StakingTransactionComp /> */}
-          {/* <TableComp /> */}
+          <TableComp />
         </div>
       </div>
 
