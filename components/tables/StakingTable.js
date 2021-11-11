@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
 
-import TableIcons from "../common/materialicons/tableIcons";
+import tableIcons from "../common/materialicons/tableIcons";
 const StakingTable = () => {
   const tableColumns = [
     {
