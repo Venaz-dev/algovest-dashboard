@@ -2,9 +2,7 @@ import Head from "next/head";
 import React, { useState } from "react";
 import Layout from "../components/navigation/Layout";
 import Icon from "../components/common/Icons";
-import StakingTransactionComp, {
-  TableComp,
-} from "../components/stakingTransaction/StakingTrans";
+
 import SearchInput from "../components/inputs/SearchInput";
 import LineChartCompOne from "../components/chart/Chart";
 import { StakeModalComp } from "../components/modals/StakeModal";
