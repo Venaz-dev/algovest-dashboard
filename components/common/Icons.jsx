@@ -304,6 +304,33 @@ const Icons = ({ name, size, color, className }) => {
         />
       </defs>
     </svg>
+  ) : name === "close-modal" ? (
+    <svg width={48} height={48} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx={24} cy={24} r={24} fill="#EDEDED" />
+      <path
+        d="M16.081 16l8.095 8.095-8.095 8.095"
+        stroke="#000"
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
+      <path
+        d="M32.108 16l-8.095 8.095 8.095 8.095"
+        stroke="#000"
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
+    </svg>
+  ) : name === "magnet" ? (
+    <svg width={48} height={48} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M31.5 24v10.5a7.5 7.5 0 11-15 0V24h-6v10.5C10.5 41.956 16.544 48 24 48s13.5-6.044 13.5-13.5V24h-6zM24 9a1.501 1.501 0 010-3c.828 0 1.5.672 1.5 1.5h3c0-1.956-1.256-3.605-3-4.225V0h-3v3.275c-1.744.62-3 2.269-3 4.225A4.5 4.5 0 0024 12a1.501 1.501 0 010 3c-.828 0-1.5-.672-1.5-1.5h-3c0 1.957 1.256 3.605 3 4.225V21h3v-3.275c1.744-.62 3-2.269 3-4.225A4.5 4.5 0 0024 9z"
+        fill="#01DE81"
+      />
+      <path
+        d="M31.5 18h6v6h-6v-6zM10.5 18h6v6h-6v-6zM10.5 24h6v3h-6v-3zM31.5 24h6v3h-6v-3zM13.5 6h3v9h-3V6zM31.5 6h3v9h-3V6zM37.5 0h3v9h-3V0zM7.5 0h3v9h-3V0z"
+        fill="#06AA65"
+      />
+    </svg>
   ) : null;
 };
 

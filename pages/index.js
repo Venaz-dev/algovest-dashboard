@@ -141,7 +141,7 @@ export default function Home() {
           <StakingTable />
         </div>
       </div>
-
+      {/* staking modal */}
       <StakeModalComp showModal={showModal} closeModal={closeModal} />
     </Layout>
   );

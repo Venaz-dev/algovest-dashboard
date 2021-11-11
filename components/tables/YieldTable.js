@@ -10,7 +10,7 @@ const YieldTable = () => {
     {
       title: "Date",
       field: "date",
-      width: "13%",
+      width: "12%",
     },
     {
       title: "Coin",
@@ -25,7 +25,7 @@ const YieldTable = () => {
     {
       title: "Est. APY",
       field: "est_apy",
-      width: "12%",
+      width: "13%",
     },
     { title: "Lockup period", field: "lockup_period", width: "16%" },
     {
@@ -135,7 +135,7 @@ const YieldTable = () => {
         columns={tableColumns}
         data={tableData}
         options={{
-          tableLayout: "fixed",
+          paging: tableData.length > 5 ? true : false,
           headerStyle: { fontSize: 14, color: "#808080" },
           rowStyle: {
             color: "#222222",
