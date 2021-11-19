@@ -140,9 +140,10 @@ export default function Home() {
           {/* <StakingTransactionComp /> */}
           <StakingTable />
         </div>
+        <StakingTable />
       </div>
       {/* staking modal */}
-      <StakeModalComp showModal={showModal} closeModal={closeModal} />
+      <StakeModalComp showModal={showModal} setShowModal={setShowModal} closeModal={closeModal} />
     </Layout>
   );
 }

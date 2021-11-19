@@ -150,10 +150,12 @@ const StakingTable = () => {
           rowStyle: {
             color: "#222222",
           },
-          search: false,
+          search: true,
+          searchFieldAlignment: "left",
           toolbar: false,
           pageSize: 5,
           emptyRowsWhenPaging: false,
+          exportButton: true,
         }}
       />
     </div>

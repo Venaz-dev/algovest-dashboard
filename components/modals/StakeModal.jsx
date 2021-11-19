@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { numberWithCommas } from "../../utils";
 import Icon from "../common/Icons";
-import Wallet from "./YieldPoolModal";
 
 export const ModalInputSection = ({
   token,
   value,
   placeholder,
-  icon_name,
   size,
+  onChange
 }) => {
   return (
     <>
       <div className="modal_input flex mt-3 justify-between pl-2 pr-2">
-        <input value={value} placeholder={placeholder} />
+        <input value={value} placeholder={placeholder} onChange={onChange}/>
         <div className="flex pt-1 pb-1 align-center">
           <Icon name={"algovest"} size={size} /> &nbsp;
           <p className="font-bold font-regular">{token}</p>
@@ -53,12 +52,29 @@ export const EstimationSection = ({
 };
 
 // Modal for Stake Page
-export const StakeModalComp = ({ showModal, closeModal }) => {
+export const StakeModalComp = ({ showModal, setShowModal, closeModal }) => {
+  const ref = useRef()
+
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+       // If the menu is open and the clicked target is not within the menu,
+         // then close the menu
+         if (showModal && ref.current && !ref.current.contains(e.target)) {
+          setShowModal(false)
+      }
+     }
+    document.addEventListener("mousedown", checkIfClickedOutside)
+    
+      return () => {
+        // Cleanup the event listener
+    document.removeEventListener("mousedown", checkIfClickedOutside)
+      }
+  }, [showModal])
   return (
     <>
       {showModal && (
         <div className="modal_overlay">
-          <div className="modal-cont">
+          <div className="modal-cont" ref={ref}>
             <div className="close-icon flex-end" onClick={closeModal}>
               <Icon name="close-modal" />
             </div>
@@ -105,16 +121,34 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
   const [stakeAmount, setStakeAmount] = useState("");
 
   const handleChange = (e) => {
-    const { value } = e.target;
-    if (value) {
-      const formattedValue = (
-        Number(value.replace(/\D/g, "")) || ""
-      ).toLocaleString();
+    // const { value } = e.target;
+    // if (value) {
+    //   const formattedValue = (
+    //     Number(value.replace(/\D/g, "")) || ""
+    //   ).toLocaleString();
 
-      setStakeAmount(formattedValue);
-    }
-    return null;
+    //   setStakeAmount(formattedValue);
+    // }
+    // return null;
+    setStakeAmount(Number(e.target.value))
   };
+
+  
+
+  //Percentage Calculation
+  function calcaPercent() {
+    // The percentage we wnat to get
+    let percentToGet = 6.78;
+    const percentCalculation = ((percentToGet/100) * stakeAmount).toFixed(2);
+  
+    return percentCalculation;
+  }
+
+  const estimatedValue = calcaPercent();
+
+  
+  
+  
   return (
     <div className={toggleState === 1 ? "content active-content" : "content"}>
       <div>
@@ -145,7 +179,8 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
         icon_name="CopyIcon"
         color="green"
         size={45}
-        amount="10,560.00"
+        // amount="10,560.00"
+        amount={estimatedValue}
         estimated_reward="6.78% (APY) Estimated Reward"
       />
     </div>
@@ -162,18 +197,14 @@ const StakeModalCompTwo = ({ toggleState }) => {
           Connect your wallet to complete transaction
         </p>
       </div>
-      <Wallet
-        walletType="MetaMask"
-        size={40}
-        icon_name="CopyIcon"
-        color="green"
-      />
-      <Wallet
-        walletType="WalletConnect"
-        size={40}
-        icon_name="CopyIcon"
-        color="green"
-      />
+      <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
+          <Icon name="CopyIcon" size={40} color="green" />
+          <p className='font-large ml-2'> MetaMask </p>
+      </div>
+      <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
+          <Icon name="CopyIcon" size={40} color="green" />
+          <p className='font-large ml-2'>WalletConnect</p>
+      </div>
     </div>
   );
 };

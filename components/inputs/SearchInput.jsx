@@ -13,7 +13,7 @@ const SearchInput = ({ icon_name, size, value, placeholder }) => {
         type="text"
         value={value}
         placeholder={placeholder}
-        onChange={(e) => setinputvalue(e.target.value)}
+        onChange={(e) => setInputvalue(e.target.value)}
       />
     </div>
   );

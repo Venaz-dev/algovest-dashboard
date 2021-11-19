@@ -140,7 +140,7 @@ const YieldTable = () => {
           rowStyle: {
             color: "#222222",
           },
-          search: false,
+          search: true,
           toolbar: false,
           pageSize: 5,
           emptyRowsWhenPaging: false,
