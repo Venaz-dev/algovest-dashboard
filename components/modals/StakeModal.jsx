@@ -138,16 +138,13 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
   //Percentage Calculation
   function calcaPercent() {
     // The percentage we wnat to get
-    let percentToGet = 6.78;
-    const percentCalculation = ((percentToGet/100) * stakeAmount).toFixed(2);
-  
+    // let percentToGet = 6.78;
+    const percentCalculation = (stakeAmount * 1.0678).toFixed(2);
     return percentCalculation;
   }
 
   const estimatedValue = calcaPercent();
 
-  
-  
   
   return (
     <div className={toggleState === 1 ? "content active-content" : "content"}>
@@ -161,6 +158,7 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
           placeholder="Enter amount to stake"
           onChange={handleChange}
           type="number"
+          required
         />
         <div className="flex pt-1 pb-1 align-center">
           <span className="mr-1">

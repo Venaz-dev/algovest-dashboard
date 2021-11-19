@@ -68,7 +68,7 @@ export default YieldPoolModalComp
 export const YieldPoolModal = () => {
     const [toggleTab, setToggleTab] = useState(1);
     const [selectOption, setSelectOption] = useState(0);
-    const [items, setItems ] = useState({duration: '0 weeks', perceent: "0% APY"});
+    const [items, setItems ] = useState({duration: '0 weeks', percent: "0"});
 
     const switchTab = (ind) => {
             setToggleTab(ind);
@@ -153,16 +153,16 @@ const YieldPoolModalCompTwo = ({toggleTab, items, switchTab }) => {
         setDepositAmount(Number(e.target.value))
       };
     
-// //Percentage Calculation
-//   function calcaPercent() {
-//     // The percentage we wnat to get
-//     let percentToGet = 40 || 60 || 80;
-//     const percentCalculation = ((percentToGet/100) * stakeAmount).toFixed(2);
+//Percentage Calculation
+  function calcaPercent() {
+    // The percentage we wnat to get
+    let percentToGet = (Number(items.percent) + 100)/100;
+    const percentCalculation = (percentToGet * depositAmount).toFixed(2);
   
-//     return percentCalculation;
-//   }
+    return percentCalculation;
+  }
 
-//   const estimatedValue = calcaPercent();
+  const estimatedValue = calcaPercent();
 
     return (
         <div className={toggleTab === 2 ? 'content active-content' : "content"}>
@@ -195,7 +195,7 @@ const YieldPoolModalCompTwo = ({toggleTab, items, switchTab }) => {
                     className='btn btn-primary mt-4'> Connect Wallet </button>
             </div> 
 
-            <EstimationSection icon_name='CopyIcon' color='green' size={45} amount='10,560.00'  estimated_reward={`${items.percent}% APY Estimated Earnings`}/>
+            <EstimationSection icon_name='CopyIcon' color='green' size={45} amount={estimatedValue}  estimated_reward={`${items.percent}% APY Estimated Earnings`}/>
         </div>
     )
 }

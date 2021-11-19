@@ -2,6 +2,7 @@ import React from "react";
 import MaterialTable from "material-table";
 
 import tableIcons from "../common/materialicons/tableIcons";
+import { style } from "dom-helpers";
 const StakingTable = () => {
   const tableColumns = [
     {
@@ -150,12 +151,27 @@ const StakingTable = () => {
           rowStyle: {
             color: "#222222",
           },
+          searchFieldStyle: {
+            width: 550,
+            borderRadius: 50,
+            // marginRight: 30,
+          },
           search: true,
           searchFieldAlignment: "left",
-          toolbar: false,
+          searchAutoFocus: true,
+          searchFieldVariant: 'outlined',
+          showTitle: false,
           pageSize: 5,
           emptyRowsWhenPaging: false,
           exportButton: true,
+        }}
+        localization={{
+          toolbar: {
+            searchPlaceholder: "Search for amount, APY or rewards",
+            exportTitle: "Export",
+            exportAriaLabel: "Export",
+            exportName: "Expo",
+          }
         }}
       />
     </div>
