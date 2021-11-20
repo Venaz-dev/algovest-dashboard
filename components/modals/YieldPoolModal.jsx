@@ -69,13 +69,28 @@ export const YieldPoolModal = () => {
     const [toggleTab, setToggleTab] = useState(1);
     const [selectOption, setSelectOption] = useState(0);
     const [items, setItems ] = useState({duration: '0 weeks', percent: "0"});
-
+    const [show, setShow] = useState(false);
+    
     const switchTab = (ind) => {
             setToggleTab(ind);
+            setShow(true);
+    }
+
+    const returnTab = () => {
+        if (toggleTab === 3) {
+            setToggleTab(2);
+        } else 
+            setToggleTab(1);
     }
 
     return (
-        <div className='modal-container w-30'>    
+        <div className='modal-container w-30'>
+                    {show ? 
+                        <div className='return_tab' onClick={returnTab}>
+                            <Icon name={"ChevronLeft"} size={23} /> 
+                            <p>Go back</p>
+                        </div>
+                    : null}
                     <div className='modal-tabs flex'>
                         <div 
                             className={toggleTab === 1 ? 'tabs active-tabs' : "tabs active-tabs"}

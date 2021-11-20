@@ -99,11 +99,11 @@ const StakeModal = () => {
           className={
             toggleState === 1 ? "tabs active-tabs" : "tabs active-tabs"
           }
-          onClick={() => toggleTab(1)}
+          // onClick={() => toggleTab(1)}
         ></div>
         <div
           className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-          onClick={() => toggleTab(2)}
+          // onClick={() => toggleTab(2)}
         >
           {" "}
         </div>
