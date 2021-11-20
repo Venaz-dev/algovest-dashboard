@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Icon from '../common/Icons';
+import Link from "next/link";
 import {ModalHeadingSection, ModalInputSection, EstimationSection } from './StakeModal';
 
 
@@ -194,6 +195,10 @@ const YieldPoolModalCompTwo = ({toggleTab, items, switchTab }) => {
                 size={20}
                 onChange={handleChange} 
             /> 
+            <div className='flex mt-1 align-center'>
+                <Icon name='alert' size={20} fill='green' /> 
+                <p className='text-smaller'> &nbsp; You don't have enough balance</p>
+            </div>
 
             <div className='lockup-period-label mt-5 flex align-center justify-between pl-3 pr-3'>
                 <div className='flex'>
@@ -217,21 +222,38 @@ const YieldPoolModalCompTwo = ({toggleTab, items, switchTab }) => {
 
 
 const YieldPoolModalCompThree = ({toggleTab}) => {
+    const [hover, setHover] = useState(false);
+
     return (
         <div className={toggleTab === 3 ? 'content active-content' : "content"}>
-           {/* <ModalHeadingSection heading_text='Select Wallet' subhead_text='Connect your wallet to complete transaction' /> */}
-           <div>
-                <p className="heading-smaller">Select Wallet</p>
-                <p className="text-light">Connect your wallet to complete transaction.</p>
-            </div>
-            <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
-                <Icon name="CopyIcon" size={40} color="green" />
-                <p className='font-large ml-2'> MetaMask </p>
-            </div>
-            <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
-                 <Icon name="CopyIcon" size={40} color="green" />
-                <p className='font-large ml-2'>WalletConnect</p>
-            </div>
+           <div className="">
+                <div>
+                    <p className="heading-smaller">Select Wallet</p>
+                    <p className="text-light">Connect your wallet to complete transaction.</p>
+                </div>
+                <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
+                    <Icon name="metamask" size={45} color="green" />
+                    <p className='font-large ml-2'> MetaMask </p>
+                </div>
+                <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
+                    <Icon name="walletConnect" size={45} color="green" />
+                    <p className='font-large ml-2'>WalletConnect</p>
+                </div>
+           </div>
+           <div className="mt-5">
+               <p className="text-smaller text-light mb-1">New to Ethereum network?</p>
+                <Link href="#">
+                    <a
+                            onMouseEnter={() => setHover(true)}
+                            onMouseLeave={() => setHover(false)}
+                        >
+                        <div className="flex">
+                            <p className="font-regular">Learn more about Crypto Wallet &nbsp;</p>
+                            <Icon name={"outlink"} color={hover ? "#222222" : "#808080"} />
+                        </div>
+                    </a>
+                </Link>
+           </div>
         </div>
     )
 }
