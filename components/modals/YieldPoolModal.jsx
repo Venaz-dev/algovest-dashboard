@@ -1,11 +1,11 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Icon from '../common/Icons';
 import Link from "next/link";
-import {ModalHeadingSection, ModalInputSection, EstimationSection } from './StakeModal';
+import { EstimationSection } from './StakeModal';
 
 
 //custom Modal components for the Yield Page Modals
-const YieldModalLabel = ({className, onClick, icon_name, token, color, lockup_period, recommendation, stake_percent, size}) => { 
+const YieldModalLabel = ({className, onClick, token, color, lockup_period, recommendation, stake_percent }) => { 
 
     return (
         <div className={className} onClick={onClick}>
@@ -15,12 +15,12 @@ const YieldModalLabel = ({className, onClick, icon_name, token, color, lockup_pe
             </div>
             <div className='flex justify-between pl-2 pr-2 pb-1'>
                 <div className='flex'>
-                    <Icon name={icon_name} size={size} color={color} />
+                    <Icon name="CopyIcon" size={20} color={color} />
                     <p className="text-smaller ml-1"> {lockup_period} </p>
                 </div>
                 <span> |  </span>
                 <div className='flex'>
-                    <Icon name={icon_name} size={size} color={color} />
+                    <Icon name="token" size={20} color={color} />
                     <p className="text-small ml-1"> {token} </p>
                 </div>
             </div>
@@ -119,8 +119,6 @@ const YieldPoolModalCompOne = ({toggleTab, setItems, switchTab, setSelectOption}
 
     return (
         <div className={toggleTab === 1 ? 'content active-content' : "content"}>
-
-            {/* <ModalHeadingSection heading_text='USDC Yield Pool' subhead_text='Choose a pool and deposit any amount.' /> */}
             <div>
                 <p className="heading-smaller">USDC Yield Pool</p>
                 <p className="text-light">Choose a pool and deposit any amount.</p>
@@ -129,8 +127,6 @@ const YieldPoolModalCompOne = ({toggleTab, setItems, switchTab, setSelectOption}
                 token='USDC' 
                 lockup_period='8 weeks lockup period'  
                 stake_percent='40% APY'
-                size={20}
-                icon_name="CopyIcon"
                 color='green'
                 className='labels bord-1 bord-rad-10 mt-3'
                 onClick={() => {setSelectOption(1); switchTab(2); setItems({duration: "8 weeks", percent:"40"})}}
@@ -141,8 +137,6 @@ const YieldPoolModalCompOne = ({toggleTab, setItems, switchTab, setSelectOption}
                 lockup_period='16 weeks lockup period' 
                 recommendation='Recommended' 
                 stake_percent='60% APY'
-                size={20}
-                icon_name='CopyIcon'
                 color='green'
                 className='labels bord-green bord-rad-10 mt-3 bg-light-green'
                 onClick={() => {setSelectOption(2); switchTab(2); setItems({duration: "16 weeks", percent:"60"})}}
@@ -152,8 +146,6 @@ const YieldPoolModalCompOne = ({toggleTab, setItems, switchTab, setSelectOption}
                 token='USDC' 
                 lockup_period='24 weeks lockup period' 
                 stake_percent='80% APY'
-                size={20}
-                icon_name='CopyIcon'
                 color='green'
                 className='labels bord-1 bord-rad-10 mt-3'
                 onClick={() => {setSelectOption(1); switchTab(2); setItems({duration: "24 weeks", percent:"80"})}}
@@ -164,6 +156,7 @@ const YieldPoolModalCompOne = ({toggleTab, setItems, switchTab, setSelectOption}
 }
 
 const YieldPoolModalCompTwo = ({toggleTab, items, switchTab }) => {
+    const [display, setDisplay] = useState(false);
     const [depositAmount, setDepositAmount] = useState("");
     const handleChange = (e) => {
         setDepositAmount(Number(e.target.value))
@@ -177,29 +170,39 @@ const YieldPoolModalCompTwo = ({toggleTab, items, switchTab }) => {
   
     return percentCalculation;
   }
-
   const estimatedValue = calcaPercent();
+
+  // check balance
+  if (depositAmount <= 0) {
+    setDisplay(true);
+  } else setDisplay(false);
 
     return (
         <div className={toggleTab === 2 ? 'content active-content' : "content"}>
-
-            {/* <ModalHeadingSection heading_text='Deposit USDC' subhead_text='Enter USDC amount and earn high cumulative interest.' /> */}
             <div>
                 <p className="heading-smaller">Deposit USDC</p>
                 <p className="text-light">Enter USDC amount and earn high cumulative interest.</p>
             </div>
-            <ModalInputSection 
+            {/* <ModalInputSection 
                 token='USDC' 
                 value={depositAmount} 
                 placeholder='0.00' 
                 size={20}
                 onChange={handleChange} 
-            /> 
-            <div className='flex mt-1 align-center'>
-                <Icon name='alert' size={20} fill='green' /> 
-                <p className='text-smaller'> &nbsp; You don't have enough balance</p>
+            />  */}
+             <div className="modal_input flex mt-3 justify-between pl-2 pr-2">
+                 <input value={depositAmount} placeholder='0.00' onChange={handleChange}/>
+                <div className="flex pt-1 pb-1 align-center">
+                    <Icon name={"token"} size={20} /> &nbsp;
+                    <p className="font-bold font-regular"> USDC </p>
+                </div>
             </div>
-
+            {display &&
+                <div className='flex mt-1 align-center'>
+                    <Icon name='alert' size={20} fill='green' /> 
+                    <p className='text-smaller'> &nbsp; You don't have enough balance </p>
+                </div>
+            }
             <div className='lockup-period-label mt-5 flex align-center justify-between pl-3 pr-3'>
                 <div className='flex'>
                     <Icon name='CopyIcon' size={20} color='green' /> 

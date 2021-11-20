@@ -2,25 +2,25 @@ import React, { useState, useRef, useEffect } from "react";
 import { numberWithCommas } from "../../utils";
 import Icon from "../common/Icons";
 
-export const ModalInputSection = ({
-  token,
-  value,
-  placeholder,
-  size,
-  onChange
-}) => {
-  return (
-    <>
-      <div className="modal_input flex mt-3 justify-between pl-2 pr-2">
-        <input value={value} placeholder={placeholder} onChange={onChange}/>
-        <div className="flex pt-1 pb-1 align-center">
-          <Icon name={"algovest"} size={size} /> &nbsp;
-          <p className="font-bold font-regular">{token}</p>
-        </div>
-      </div>
-    </>
-  );
-};
+// export const ModalInputSection = ({
+//   token,
+//   value,
+//   placeholder,
+//   size,
+//   onChange
+// }) => {
+//   return (
+//     <>
+//       <div className="modal_input flex mt-3 justify-between pl-2 pr-2">
+//         <input value={value} placeholder={placeholder} onChange={onChange}/>
+//         <div className="flex pt-1 pb-1 align-center">
+//           <Icon name={"algovest"} size={size} /> &nbsp;
+//           <p className="font-bold font-regular">{token}</p>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
 
 export const EstimationSection = ({
   icon_name,
@@ -58,7 +58,6 @@ export const StakeModalComp = ({ showModal, setShowModal, closeModal }) => {
   useEffect(() => {
     const checkIfClickedOutside = e => {
        // If the menu is open and the clicked target is not within the menu,
-         // then close the menu
          if (showModal && ref.current && !ref.current.contains(e.target)) {
           setShowModal(false)
       }
@@ -118,6 +117,7 @@ const StakeModal = () => {
 
 //component for Modal Tab 1
 const StakeModalCompOne = ({ toggleState, toggleTab }) => {
+  const [display, setDisplay] = useState(false);
   const [stakeAmount, setStakeAmount] = useState("");
 
   const handleChange = (e) => {
@@ -137,14 +137,14 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
 
   //Percentage Calculation
   function calcaPercent() {
-    // The percentage we wnat to get
-    // let percentToGet = 6.78;
     const percentCalculation = (stakeAmount * 1.0678).toFixed(2);
     return percentCalculation;
   }
-
   const estimatedValue = calcaPercent();
 
+  if (stakeAmount <= 0) {
+    setDisplay(true);
+  } else setDisplay(false);
   
   return (
     <div className={toggleState === 1 ? "content active-content" : "content"}>
@@ -167,7 +167,12 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
           <p className=" font-regular text-light">AVS</p>
         </div>
       </div>
-
+        { display &&
+              <div className='flex mt-1 align-center'>
+                  <Icon name='alert' size={20} fill='green' /> 
+                  <p className='text-smaller'> &nbsp; You don't have enough balance </p>
+              </div>
+          }
       <div className="modal-btn">
         <button onClick={() => toggleTab(2)} className="btn btn-primary mt-4">
           Connect Wallet
@@ -189,20 +194,36 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
 const StakeModalCompTwo = ({ toggleState }) => {
   return (
     <div className={toggleState === 2 ? "content active-content" : "content"}>
-      <div>
-        <p className="heading-smaller">Select Wallet</p>
-        <p className="text-smaller">
-          Connect your wallet to complete transaction
-        </p>
-      </div>
-      <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
-          <Icon name="CopyIcon" size={40} color="green" />
-          <p className='font-large ml-2'> MetaMask </p>
-      </div>
-      <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
-          <Icon name="CopyIcon" size={40} color="green" />
-          <p className='font-large ml-2'>WalletConnect</p>
-      </div>
+        <div className="">
+            <div>
+              <p className="heading-smaller">Select Wallet</p>
+              <p className="text-smaller">
+                Connect your wallet to complete transaction
+              </p>
+            </div>
+            <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
+                <Icon name="CopyIcon" size={40} color="green" />
+                <p className='font-large ml-2'> MetaMask </p>
+            </div>
+            <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
+                <Icon name="CopyIcon" size={40} color="green" />
+                <p className='font-large ml-2'>WalletConnect</p>
+            </div>
+        </div>
+        <div className="mt-5">
+               <p className="text-smaller text-light mb-1">New to Ethereum network?</p>
+                <Link href="#">
+                    <a
+                            onMouseEnter={() => setHover(true)}
+                            onMouseLeave={() => setHover(false)}
+                        >
+                        <div className="flex">
+                            <p className="font-regular">Learn more about Crypto Wallet &nbsp;</p>
+                            <Icon name={"outlink"} color={hover ? "#222222" : "#808080"} />
+                        </div>
+                    </a>
+                </Link>
+           </div>
     </div>
   );
 };
