@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { numberWithCommas } from "../../utils";
 import Icon from "../common/Icons";
+import Link from "next/link";
 
 // export const ModalInputSection = ({
 //   token,
@@ -131,6 +132,10 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
     // }
     // return null;
     setStakeAmount(Number(e.target.value))
+
+    if (stakeAmount <= 0) {
+      setDisplay(true);
+    } else setDisplay(false);
   };
 
   
@@ -142,9 +147,6 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
   }
   const estimatedValue = calcaPercent();
 
-  if (stakeAmount <= 0) {
-    setDisplay(true);
-  } else setDisplay(false);
   
   return (
     <div className={toggleState === 1 ? "content active-content" : "content"}>
@@ -192,6 +194,8 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
 
 //component for Modal Tab 2
 const StakeModalCompTwo = ({ toggleState }) => {
+  const [hover, setHover] = useState(false);
+
   return (
     <div className={toggleState === 2 ? "content active-content" : "content"}>
         <div className="">
@@ -202,11 +206,11 @@ const StakeModalCompTwo = ({ toggleState }) => {
               </p>
             </div>
             <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
-                <Icon name="CopyIcon" size={40} color="green" />
+                <Icon name="metamask" size={40} color="green" />
                 <p className='font-large ml-2'> MetaMask </p>
             </div>
             <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
-                <Icon name="CopyIcon" size={40} color="green" />
+                <Icon name="walletConnect" size={40} color="green" />
                 <p className='font-large ml-2'>WalletConnect</p>
             </div>
         </div>
@@ -223,7 +227,7 @@ const StakeModalCompTwo = ({ toggleState }) => {
                         </div>
                     </a>
                 </Link>
-           </div>
+        </div>
     </div>
   );
 };

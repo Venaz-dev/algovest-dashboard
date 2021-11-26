@@ -4,30 +4,6 @@ import Link from "next/link";
 import { EstimationSection } from './StakeModal';
 
 
-//custom Modal components for the Yield Page Modals
-const YieldModalLabel = ({className, onClick, token, color, lockup_period, recommendation, stake_percent }) => { 
-
-    return (
-        <div className={className} onClick={onClick}>
-            <div className='flex pl-2 pr-2 pt-1 align-center'>
-                <p className="heading-small mr-1 tcolor-green"> {stake_percent} </p>
-                <div className="recommend_box text-smaller color-white bg-green bord-rad-10 w-30"><p>{recommendation}</p></div>
-            </div>
-            <div className='flex justify-between pl-2 pr-2 pb-1'>
-                <div className='flex'>
-                    <Icon name="CopyIcon" size={20} color={color} />
-                    <p className="text-smaller ml-1"> {lockup_period} </p>
-                </div>
-                <span> |  </span>
-                <div className='flex'>
-                    <Icon name="token" size={20} color={color} />
-                    <p className="text-small ml-1"> {token} </p>
-                </div>
-            </div>
-        </div>
-    )
-}
-
 // Modal for Yield Pool Page
 const YieldPoolModalComp = ({showModal, setShowModal, closeModal}) => {
  const ref = useRef()
@@ -71,18 +47,21 @@ export const YieldPoolModal = () => {
     const [selectOption, setSelectOption] = useState(0);
     const [items, setItems ] = useState({duration: '0 weeks', percent: "0"});
     const [show, setShow] = useState(false);
-    
+    const [step, setStep] = useState(1);
+    const [stepIndex, setStepIndex] = useState(0);
+
+
     const switchTab = (ind) => {
             setToggleTab(ind);
             setShow(true);
     }
 
     const returnTab = () => {
-        if (toggleTab === 3) {
-            setToggleTab(2);
-        } else 
-            setToggleTab(1);
+        if (toggleTab > 1) {
+            setToggleTab(toggleTab - 1);
+        }
     }
+    
 
     return (
         <div className='modal-container w-30'>
@@ -95,13 +74,16 @@ export const YieldPoolModal = () => {
                     <div className='modal-tabs flex'>
                         <div 
                             className={toggleTab === 1 ? 'tabs active-tabs' : "tabs active-tabs"}
-                            onClick={() => switchTab(1)}> </div>
+                            > 
+                        </div>
                         <div 
-                            className={toggleTab === 2 ? 'tabs active-tabs' : "tabs"}
-                            onClick={() => switchTab(2)}> </div>
+                            className={toggleTab === 2 ? 'tabs active-tabs' : `${toggleTab === 3 ? 'tabs active-tabs' : "tabs"}`}
+                            > 
+                        </div>
                         <div 
                             className={toggleTab === 3 ? 'tabs active-tabs' : "tabs"}
-                            onClick={() => switchTab(3)}> </div>
+                            > 
+                        </div>
                     </div>
                     <div className='content-tabs'>
                         <YieldPoolModalCompOne toggleTab={toggleTab} setSelectOption={setSelectOption} setItems={setItems} switchTab={switchTab}/> 
@@ -123,59 +105,92 @@ const YieldPoolModalCompOne = ({toggleTab, setItems, switchTab, setSelectOption}
                 <p className="heading-smaller">USDC Yield Pool</p>
                 <p className="text-light">Choose a pool and deposit any amount.</p>
             </div>
-            <YieldModalLabel 
-                token='USDC' 
-                lockup_period='8 weeks lockup period'  
-                stake_percent='40% APY'
-                color='green'
-                className='labels bord-1 bord-rad-10 mt-3'
-                onClick={() => {setSelectOption(1); switchTab(2); setItems({duration: "8 weeks", percent:"40"})}}
-            />
 
-            <YieldModalLabel 
-                token='USDC' 
-                lockup_period='16 weeks lockup period' 
-                recommendation='Recommended' 
-                stake_percent='60% APY'
-                color='green'
-                className='labels bord-green bord-rad-10 mt-3 bg-light-green'
-                onClick={() => {setSelectOption(2); switchTab(2); setItems({duration: "16 weeks", percent:"60"})}}
-            />
-
-            <YieldModalLabel 
-                token='USDC' 
-                lockup_period='24 weeks lockup period' 
-                stake_percent='80% APY'
-                color='green'
-                className='labels bord-1 bord-rad-10 mt-3'
-                onClick={() => {setSelectOption(1); switchTab(2); setItems({duration: "24 weeks", percent:"80"})}}
-            />
-
+            <div className='labels bord-1 bord-rad-10 mt-3' onClick={() => {setSelectOption(1); switchTab(2); setItems({duration: "8 weeks", percent:"40"})}}>
+                <div className='flex pl-2 pr-2 pt-1 align-center'>
+                    <p className="heading-small mr-1 tcolor-green"> 40% APY </p>
+                </div>
+                <div className='flex pl-2 pr-2 pb-1'>
+                    <div className='flex align-center'>
+                        <Icon name="lock" size={20} />
+                        <p className="text-smaller ml-1"> 8 weeks lockup period </p>
+                    </div>
+                    <span className='ml-2 mr-2'> |  </span>
+                    <div className='flex'>
+                        <Icon name="token" size={20} />
+                        <p className="text-small ml-1"> USDC </p>
+                    </div>
+                </div>
+            </div>
+            <div className='labels bord-green bord-rad-10 mt-3 bg-light-green' onClick={() => {setSelectOption(2); switchTab(2); setItems({duration: "16 weeks", percent:"60"})}}>
+                <div className='flex pl-2 pr-2 pt-1 align-center'>
+                    <p className="heading-small mr-1 tcolor-green"> 60% APY </p>
+                    <div className="recommend_box text-smaller color-white bg-green bord-rad-10 w-30"><p>Recommended</p></div>
+                </div>
+                <div className='flex pl-2 pr-2 pb-1'>
+                    <div className='flex align-center'>
+                        <Icon name="lock" size={20}/>
+                        <p className="text-smaller ml-1"> 16 weeks lockup period </p>
+                    </div>
+                    <span className='ml-2 mr-2'> |  </span>
+                    <div className='flex'>
+                        <Icon name="token" size={20}/>
+                        <p className="text-small ml-1"> USDC </p>
+                    </div>
+                </div>
+            </div>
+            <div className='labels bord-1 bord-rad-10 mt-3' onClick={() => {setSelectOption(1); switchTab(2); setItems({duration: "24 weeks", percent:"80"})}}>
+                <div className='flex pl-2 pr-2 pt-1 align-center'>
+                    <p className="heading-small mr-1 tcolor-green"> 80% APY </p>
+                </div>
+                <div className='flex pl-2 pr-2 pb-1'>
+                    <div className='flex align-center'>
+                        <Icon name="lock" size={20} color='green'/>
+                        <p className="text-smaller ml-1"> 24 weeks lockup period </p>
+                    </div>
+                    <span className='ml-2 mr-2'> |  </span>
+                    <div className='flex'>
+                        <Icon name="token" size={20} />
+                        <p className="text-small ml-1"> USDC </p>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
 
 const YieldPoolModalCompTwo = ({toggleTab, items, switchTab }) => {
-    const [display, setDisplay] = useState(false);
+    const [errorDisplay, setErrorDisplay] = useState(false);
     const [depositAmount, setDepositAmount] = useState("");
+    
     const handleChange = (e) => {
-        setDepositAmount(Number(e.target.value))
+        setDepositAmount(Number(e.target.value));
+
+        // check balance
+        if (depositAmount <= 0) {
+            setErrorDisplay(true);
+        } else setErrorDisplay(false);
       };
     
-//Percentage Calculation
-  function calcaPercent() {
-    // The percentage we wnat to get
-    let percentToGet = (Number(items.percent) + 100)/100;
-    const percentCalculation = (percentToGet * depositAmount).toFixed(2);
-  
-    return percentCalculation;
-  }
-  const estimatedValue = calcaPercent();
+    //Percentage Calculation
+    function calcaPercent() {
+        // The percentage we wnat to get
+        let percentToGet = (Number(items.percent) + 100)/100;
+        const percentCalculation = (percentToGet * depositAmount).toFixed(2);
+    
+        return percentCalculation;
+    }
+    const estimatedValue = calcaPercent();
+    
+    // valdating input fiels
+    function connectWalletClick(e) {
+        e.preventDefault();
 
-  // check balance
-  if (depositAmount <= 0) {
-    setDisplay(true);
-  } else setDisplay(false);
+     if(depositAmount.trim() === '') { //you can make more validations here
+       return;
+     } 
+    //down here use the rest of logic
+   }
 
     return (
         <div className={toggleTab === 2 ? 'content active-content' : "content"}>
@@ -190,33 +205,36 @@ const YieldPoolModalCompTwo = ({toggleTab, items, switchTab }) => {
                 size={20}
                 onChange={handleChange} 
             />  */}
-             <div className="modal_input flex mt-3 justify-between pl-2 pr-2">
-                 <input value={depositAmount} placeholder='0.00' onChange={handleChange}/>
-                <div className="flex pt-1 pb-1 align-center">
-                    <Icon name={"token"} size={20} /> &nbsp;
-                    <p className="font-bold font-regular"> USDC </p>
+            <form>
+                <div className="modal_input flex mt-3 justify-between pl-2 pr-2">
+                    <input value={depositAmount} placeholder='0.00' onChange={handleChange}/>
+                    <div className="flex pt-1 pb-1 align-center">
+                        <Icon name={"token"} size={20} /> &nbsp;
+                        <p className="font-bold font-regular"> USDC </p>
+                    </div>
                 </div>
-            </div>
-            {display &&
-                <div className='flex mt-1 align-center'>
-                    <Icon name='alert' size={20} fill='green' /> 
-                    <p className='text-smaller'> &nbsp; You don't have enough balance </p>
+                {errorDisplay &&
+                    <div className='flex mt-1 align-center'>
+                        <Icon name='alert' size={20} fill='green' /> 
+                        <p className='text-smaller'> &nbsp; You don't have enough balance </p>
+                    </div>
+                }
+                <div className='lockup-period-label mt-5 flex align-center justify-between pl-3 pr-3'>
+                    <div className='flex'>
+                        <Icon name='CopyIcon' size={20} color='green' /> 
+                        <p className='ml-1'> {items.duration} lockup period</p>
+                    </div>
+                    <div>
+                        <p> @{items.percent}% APY</p>
+                    </div>
                 </div>
-            }
-            <div className='lockup-period-label mt-5 flex align-center justify-between pl-3 pr-3'>
-                <div className='flex'>
-                    <Icon name='CopyIcon' size={20} color='green' /> 
-                    <p className='ml-1'> {items.duration} lockup period</p>
-                </div>
-                <div>
-                    <p> @{items.percent}% APY</p>
-                </div>
-            </div>
-            <div className='modal-btn'>
-                <button 
-                    onClick={() => switchTab(3)}
-                    className='btn btn-primary mt-4'> Connect Wallet </button>
-            </div> 
+                <div className='modal-btn'>
+                    <button 
+                        type='button'
+                        onClick={(e) => {connectWalletClick; switchTab(3)}}
+                        className='btn btn-primary mt-4'> Connect Wallet </button>
+                </div> 
+            </form>
 
             <EstimationSection icon_name='CopyIcon' color='green' size={45} amount={estimatedValue}  estimated_reward={`${items.percent}% APY Estimated Earnings`}/>
         </div>

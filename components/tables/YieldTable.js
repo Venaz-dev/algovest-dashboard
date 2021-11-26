@@ -87,6 +87,17 @@ const YieldTable = () => {
       state: "Claim",
     },
     {
+      date: "21.09.2021",
+      coin: "USDC",
+      amount: "102.50435",
+      est_apy: "40%",
+      lockup_period: "8 Weeks",
+      cum_interest: "0.51942",
+      accrue_days: 10,
+      status: "Active",
+      state: "Claim",
+    },
+    {
       date: "14.09.2021",
       coin: "USDC",
       amount: "76.50693",
@@ -94,6 +105,39 @@ const YieldTable = () => {
       lockup_period: "16 Weeks",
       cum_interest: "2.76403",
       accrue_days: 112,
+      status: "Done",
+      state: "Claimed",
+    },
+    {
+      date: "14.09.2021",
+      coin: "USDC",
+      amount: "76.50693",
+      est_apy: "60%",
+      lockup_period: "16 Weeks",
+      cum_interest: "2.76403",
+      accrue_days: 112,
+      status: "Done",
+      state: "Claimed",
+    },
+    {
+      date: "02.09.2021",
+      coin: "USDC",
+      amount: "78.50693",
+      est_apy: "80%",
+      lockup_period: "24 Weeks",
+      cum_interest: "17.13092",
+      accrue_days: 169,
+      status: "Done",
+      state: "Claimed",
+    },
+    {
+      date: "02.09.2021",
+      coin: "USDC",
+      amount: "78.50693",
+      est_apy: "80%",
+      lockup_period: "24 Weeks",
+      cum_interest: "17.13092",
+      accrue_days: 169,
       status: "Done",
       state: "Claimed",
     },
@@ -141,9 +185,23 @@ const YieldTable = () => {
             color: "#222222",
           },
           search: true,
-          toolbar: false,
+          searchFieldStyle: {
+            borderRadius: 50,
+          },
+          search: true,
+          searchFieldAlignment: "left",
+          searchAutoFocus: false,
+          searchFieldVariant: 'outlined',
+          showTitle: false,
           pageSize: 5,
           emptyRowsWhenPaging: false,
+          exportButton: true,
+        }}
+        localization={{
+          toolbar: {
+            searchPlaceholder: "Search for amount, APY or rewards",
+            exportName: "Expo",
+          }
         }}
       />
     </div>

@@ -152,13 +152,11 @@ const StakingTable = () => {
             color: "#222222",
           },
           searchFieldStyle: {
-            width: 550,
             borderRadius: 50,
-            // marginRight: 30,
           },
           search: true,
           searchFieldAlignment: "left",
-          searchAutoFocus: true,
+          searchAutoFocus: false,
           searchFieldVariant: 'outlined',
           showTitle: false,
           pageSize: 5,
@@ -168,8 +166,8 @@ const StakingTable = () => {
         localization={{
           toolbar: {
             searchPlaceholder: "Search for amount, APY or rewards",
-            exportTitle: "Export",
-            exportAriaLabel: "Export",
+            // exportTitle: "Export",
+            // exportAriaLabel: "Export",
             exportName: "Expo",
           }
         }}

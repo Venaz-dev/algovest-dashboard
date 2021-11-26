@@ -125,7 +125,7 @@ export default function Home() {
 
         <div className="staking-content mt-5">
           <p className="font-regular mb-3"> Staking Transactions</p>
-          <div className="flex justify-between w-100 mb-3">
+          {/* <div className="flex justify-between w-100 mb-3">
             <SearchInput
               icon_name="SearchRightIcon"
               size={25}
@@ -135,12 +135,9 @@ export default function Home() {
               <Icon name="export" className="icon" />
               &nbsp; Export
             </button>
-          </div>
-
-          {/* <StakingTransactionComp /> */}
+          </div> */}
           <StakingTable />
         </div>
-        <StakingTable />
       </div>
       {/* staking modal */}
       <StakeModalComp showModal={showModal} setShowModal={setShowModal} closeModal={closeModal} />

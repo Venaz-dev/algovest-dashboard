@@ -111,8 +111,8 @@ export default function YieldPoolPage() {
         </div>
 
         <div className="yield-content mt-5">
-          <p className="font-regular mb-3"> Yield Pool Transcations</p>
-          <div className="flex justify-between w-100 mb-3">
+          <p className="font-regular mb-3"> Yield Pool Transactions</p>
+          {/* <div className="flex justify-between w-100 mb-3">
             <SearchInput
               icon_name="SearchRightIcon"
               size={20}
@@ -121,10 +121,8 @@ export default function YieldPoolPage() {
             <button className="btn btn-gray  w-25" style={{ fontSize: 17 }}>
               <Icon name="export" className="icon" color="#fff" /> &nbsp; Export
             </button>
-          </div>
-          {/* <YieldPoolComp /> */}
+          </div> */}
           <YieldTable />
-          {/* <YieldTable /> */}
         </div>
       </div>
       <YieldPoolModalComp showModal={showModal} setShowModal={setShowModal} closeModal={closeModal} />
