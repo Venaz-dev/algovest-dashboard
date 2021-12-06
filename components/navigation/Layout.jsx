@@ -60,6 +60,7 @@ const Layout = ({
 
   const onLogin = async (provider) => {
     const web3 = new Web3(provider);
+    console.log("provider", provider);
     const accounts = await web3.eth.getAccounts();
     if (accounts.length === 0) {
       console.log("Please connect to MetaMask!");
@@ -75,24 +76,31 @@ const Layout = ({
     }
 
     const networkId = await web3.eth.net.getId();
+    console.log("netId", networkId);
     if (networkId == 42) {
       // 0x822480D4eFD781C696272F0aca9980395Db72cc0 // address of token
       const contractAddress = "0x822480D4eFD781C696272F0aca9980395Db72cc0";
+      const currentAdd = "0x3E3d944Bd6aEECFA864F9eb93337F19B5e95Ff74";
       const algoPooltokencontract = new web3.eth.Contract(
         contractAbi.abi,
-        contractAddress
+        currentAdd
       );
 
       //  const nameoftoken = await algoPooltokencontract.methods;
-      const rewardToken = await algoPooltokencontract.methods.rewardAPY();
-      const rewardTokenmeth = await algoPooltokencontract.methods
-        .rewardAPY()
-        .method();
+      // const rewardToken = await algoPooltokencontract.methods.rewardAPY();
+      // const rewardTokenmeth = await algoPooltokencontract.methods.rewardAPY()
+      //   ._method;
       //  const rewardCallToken = await algoPooltokencontract.methods.rewardAPY().call();
-      console.log(algoPooltokencontract);
+      console.clear();
+
+      // let result = await algoPooltokencontract?.methods
+      //   ?.balanceOf(contractAddress)
+      //   ?.call();
+      // console.log("contract", algoPooltokencontract.methods);
+      // console.log("result", result);
       //  console.log(nameoftoken);
-      console.log(rewardToken);
-      console.log(rewardTokenmeth);
+      // console.log(rewardToken);
+      // console.log(rewardTokenmeth);
       //  console.log(rewardCallToken);
     } else {
       window.alert("the contract not deployed to detected network.");
