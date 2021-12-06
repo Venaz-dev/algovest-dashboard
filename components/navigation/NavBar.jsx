@@ -35,7 +35,9 @@ const WelcomeNavLinks = ({ currentAccount }) => {
       <div className="actions">
         <ul>
           <li>
-            <a href="/"> {currentAccount?.substring(0, 10)}... </a>
+            <Link href="/">
+              <a> {currentAccount?.substring(0, 10)}... </a>
+            </Link>
           </li>
         </ul>
       </div>
