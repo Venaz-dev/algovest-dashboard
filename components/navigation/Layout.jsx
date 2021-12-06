@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import Head from "next/head";
 import { useState } from "react";
 import Web3 from "web3";
+import contractAbi from "../../pages/api/contractAbi.json";
 
 const Layout = ({
   children,
@@ -21,7 +22,9 @@ const Layout = ({
     } else if (window.web3) {
       provider = window.web3.currentProvider;
     } else {
-      window.alert("No Ethereum browser detected! Check out MetaMask");
+      window.alert(
+        "No Ethereum browser detected! Install MetaMask extension to continue..."
+      );
     }
     console.log("pro", provider);
     return provider;
@@ -51,8 +54,8 @@ const Layout = ({
         method: "eth_requestAccounts",
       });
       setIsConnecting(false);
+      onLogin(provider);
     }
-    onLogin(provider);
   };
 
   const onLogin = async (provider) => {
@@ -70,19 +73,34 @@ const Layout = ({
       setBalance(Number(accBalanceEth).toFixed(6));
       setIsConnected(true);
     }
-    // const networkId = await web3.eth.net.getId();
-    //   if (networkId == 42) {
-    //     // 0x822480D4eFD781C696272F0aca9980395Db72cc0 // address of token
-    //     const algoPooltokencontract = new web3.eth.Contract(TokenAbi.abi,"0x822480D4eFD781C696272F0aca9980395Db72cc0");
 
-    //   } else {
-    //     window.alert("the contract not deployed to detected network.");
-    //   }
-  };
+    const networkId = await web3.eth.net.getId();
+    if (networkId == 42) {
+      // 0x822480D4eFD781C696272F0aca9980395Db72cc0 // address of token
+      const contractAddress = "0x822480D4eFD781C696272F0aca9980395Db72cc0";
+      const algoPooltokencontract = new web3.eth.Contract(
+        contractAbi.abi,
+        contractAddress
+      );
 
-  const onLogout = () => {
-    setIsConnected(false);
+      //  const nameoftoken = await algoPooltokencontract.methods;
+      const rewardToken = await algoPooltokencontract.methods.rewardAPY();
+      const rewardTokenmeth = await algoPooltokencontract.methods
+        .rewardAPY()
+        .method();
+      //  const rewardCallToken = await algoPooltokencontract.methods.rewardAPY().call();
+      console.log(algoPooltokencontract);
+      //  console.log(nameoftoken);
+      console.log(rewardToken);
+      console.log(rewardTokenmeth);
+      //  console.log(rewardCallToken);
+    } else {
+      window.alert("the contract not deployed to detected network.");
+    }
   };
+  // const onLogout = () => {
+  //   setIsConnected(false);
+  // };
 
   return (
     <div className="layout">
@@ -93,14 +111,14 @@ const Layout = ({
       </Head>
       <NavBar
         onLogin={onLogin}
-        onLogout={onLogout}
+        // onLogout={onLogout}
         currentAccount={currentAccount}
         isConnected={isConnected}
         onLoginHandler={onLoginHandler}
       />
       <main className="children">
         {!isConnected && (
-          <div className="start_page" onLogin={onLogin} onLogout={onLogout}>
+          <div className="start_page">
             <p className="mb-3">Connect your wallet to the application</p>
             <button
               onClick={onLoginHandler}
