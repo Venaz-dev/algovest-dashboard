@@ -54,22 +54,22 @@ export const EstimationSection = ({
 
 // Modal for Stake Page
 export const StakeModalComp = ({ showModal, setShowModal, closeModal }) => {
-  const ref = useRef()
+  const ref = useRef();
 
   useEffect(() => {
-    const checkIfClickedOutside = e => {
-       // If the menu is open and the clicked target is not within the menu,
-         if (showModal && ref.current && !ref.current.contains(e.target)) {
-          setShowModal(false)
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      if (showModal && ref.current && !ref.current.contains(e.target)) {
+        setShowModal(false);
       }
-     }
-    document.addEventListener("mousedown", checkIfClickedOutside)
-    
-      return () => {
-        // Cleanup the event listener
-    document.removeEventListener("mousedown", checkIfClickedOutside)
-      }
-  }, [showModal])
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [showModal]);
   return (
     <>
       {showModal && (
@@ -131,14 +131,12 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
     //   setStakeAmount(formattedValue);
     // }
     // return null;
-    setStakeAmount(Number(e.target.value))
+    setStakeAmount(Number(e.target.value));
 
     if (stakeAmount <= 0) {
       setDisplay(true);
     } else setDisplay(false);
   };
-
-  
 
   //Percentage Calculation
   function calcaPercent() {
@@ -147,7 +145,6 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
   }
   const estimatedValue = calcaPercent();
 
-  
   return (
     <div className={toggleState === 1 ? "content active-content" : "content"}>
       <div>
@@ -169,12 +166,15 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
           <p className=" font-regular text-light">AVS</p>
         </div>
       </div>
-        { display &&
-              <div className='flex mt-1 align-center'>
-                  <Icon name='alert' size={20} fill='green' /> 
-                  <p className='text-smaller'> &nbsp; You don't have enough balance </p>
-              </div>
-          }
+      {display && (
+        <div className="flex mt-1 align-center">
+          <Icon name="alert" size={20} fill="green" />
+          <p className="text-smaller">
+            {" "}
+            &nbsp; You don&apos;t have enough balance{" "}
+          </p>
+        </div>
+      )}
       <div className="modal-btn">
         <button onClick={() => toggleTab(2)} className="btn btn-primary mt-4">
           Connect Wallet
@@ -198,36 +198,38 @@ const StakeModalCompTwo = ({ toggleState }) => {
 
   return (
     <div className={toggleState === 2 ? "content active-content" : "content"}>
-        <div className="">
-            <div>
-              <p className="heading-smaller">Select Wallet</p>
-              <p className="text-smaller">
-                Connect your wallet to complete transaction
+      <div className="">
+        <div>
+          <p className="heading-smaller">Select Wallet</p>
+          <p className="text-smaller">
+            Connect your wallet to complete transaction
+          </p>
+        </div>
+        <div className="wallet-cont wallet-type flex align-center pl-2 mt-2">
+          <Icon name="metamask" size={40} color="green" />
+          <p className="font-large ml-2"> MetaMask </p>
+        </div>
+        <div className="wallet-cont wallet-type flex align-center pl-2 mt-2">
+          <Icon name="walletConnect" size={40} color="green" />
+          <p className="font-large ml-2">WalletConnect</p>
+        </div>
+      </div>
+      <div className="mt-5">
+        <p className="text-smaller text-light mb-1">New to Ethereum network?</p>
+        <Link href="#">
+          <a
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            <div className="flex">
+              <p className="font-regular">
+                Learn more about Crypto Wallet &nbsp;
               </p>
+              <Icon name={"outlink"} color={hover ? "#222222" : "#808080"} />
             </div>
-            <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
-                <Icon name="metamask" size={40} color="green" />
-                <p className='font-large ml-2'> MetaMask </p>
-            </div>
-            <div className='wallet-cont wallet-type flex align-center pl-2 mt-2'>
-                <Icon name="walletConnect" size={40} color="green" />
-                <p className='font-large ml-2'>WalletConnect</p>
-            </div>
-        </div>
-        <div className="mt-5">
-               <p className="text-smaller text-light mb-1">New to Ethereum network?</p>
-                <Link href="#">
-                    <a
-                            onMouseEnter={() => setHover(true)}
-                            onMouseLeave={() => setHover(false)}
-                        >
-                        <div className="flex">
-                            <p className="font-regular">Learn more about Crypto Wallet &nbsp;</p>
-                            <Icon name={"outlink"} color={hover ? "#222222" : "#808080"} />
-                        </div>
-                    </a>
-                </Link>
-        </div>
+          </a>
+        </Link>
+      </div>
     </div>
   );
 };
