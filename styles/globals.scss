@@ -40,6 +40,17 @@ p {
   background-color: #e5e5e580;
   .children {
     padding-top: 100px;
+
+    .start_page {
+      width: 90%;
+      max-width: 40rem;
+      padding: 3rem;
+      margin: 2rem auto;
+      text-align: center;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+      border-radius: 10px;
+    }
   }
 }
 

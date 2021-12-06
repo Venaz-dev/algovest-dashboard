@@ -5,27 +5,14 @@ import { useScrollDetect } from "../../utils";
 import Icons from "../common/Icons";
 import NavbarModalComp from "../modals/NavbarModal";
 
-const NavBar = () => {
-  const [toggleModal, setToggleModal] = useState(false);
 
-  const openModal = () => {
-    setToggleModal(!toggleModal);
-  };
-  const closeModal = () => {
-    setToggleModal(!toggleModal);
-  };
 
-  const { shadow } = useScrollDetect();
+const WelcomeNavLinks = ({currentAccount}) => {
 
   const router = useRouter();
 
   return (
-    <div className={`nav-bar ${shadow && "nav-shadow"}`}>
-      <div className="nav-section">
-        <div className="logo">
-          <img src="/assets/images/main_logo.png" alt="" />
-        </div>
-        <div className="nav-links">
+  <div className="nav-links">
           <div className="navs">
             <Link href="/">
               <a>
@@ -50,24 +37,55 @@ const NavBar = () => {
               </a>
             </Link>
           </div>
+          <div className="actions"> 
+            <ul>
+              <li>
+                <a href="/"> {currentAccount} </a>
+              </li>
+            </ul>
+        </div>
+  </div>
+  )
+}
+const LoginNavLinks = ({openModal}) => {
 
-          <div className="actions">
-            <button
-              className="btn btn-black mr-2"
-              style={{
-                marginLeft: 30,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              Connect Wallet
-            </button>
+  return (
+  <div className="nav-links">
+          <div className="actions"> 
             <button onClick={openModal} className="modal-btn">
               <Icons name="triple-dot" />
             </button>
-          </div>
         </div>
+  </div>
+  )
+}
+
+
+const NavBar = ({currentAccount, onLoginHandler, isConnected}) => {
+  
+  const [toggleModal, setToggleModal] = useState(false);
+
+  const openModal = () => {
+    setToggleModal(!toggleModal);
+  };
+  const closeModal = () => {
+    setToggleModal(!toggleModal);
+  };
+
+  const { shadow } = useScrollDetect();
+
+  return (
+    <div className={`nav-bar ${shadow && "nav-shadow"}`}>
+      <div className="nav-section">
+        <div className="logo">
+          <img src="/assets/images/main_logo.png" alt="" />
+        </div>
+        <>
+          {isConnected
+            ? <WelcomeNavLinks currentAccount={currentAccount}/>
+            : <LoginNavLinks openModal={openModal}/>
+          }
+        </>
       </div>
       {toggleModal && (
         <NavbarModalComp
