@@ -7,9 +7,9 @@ import { StakeModalComp } from "../components/modals/StakeModal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import StakingTable from "../components/tables/StakingTable";
 import { Dashboard } from "@material-ui/icons";
-import Web3 from "web3";
 
 export default function Home() {
+
   // const [loading, setLoading] = useState(false);
   const [currentAccount, setCurrentAccount] = useState(null);
   const [balance, setBalance] = useState(0);
@@ -84,7 +84,7 @@ export default function Home() {
                         <div className="stat">
                           <p className="text-light">Contracts:</p>
                           <CopyToClipboard
-                            text={currentAccount}
+                            text=""
                             onCopy={() => {
                               setCopyAddress(true);
                               setTimeout(() => {
@@ -96,7 +96,7 @@ export default function Home() {
                               {" "}
                               <Icon name="EthereumIcon" size={15} />{" "}
                               <span className="text-light mr-1">Ethereum</span>{" "}
-                              0x94d916873b...{" "}
+                              {currentAccount}{" "}
                               <Icon
                                 name="CopyIcon"
                                 size={15}
