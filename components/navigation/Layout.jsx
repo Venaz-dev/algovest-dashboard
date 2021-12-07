@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 import Head from "next/head";
 import { useState } from "react";
 import Web3 from "web3";
-import contractAbi from "../../pages/api/contractAbi.json";
+import contractAbi from "../../utils/contractAbi.json";
 
 const Layout = ({
   children,
@@ -48,18 +48,25 @@ const Layout = ({
         console.error(
           "Not window.ethereum provider. Do you have multiple wallet installed ?"
         );
+      } else {
+        setIsConnecting(true);
+        await provider.request({
+          method: "eth_requestAccounts",
+        });
+        setIsConnecting(false);
+        onLogin(provider);
       }
-      setIsConnecting(true);
-      await provider.request({
-        method: "eth_requestAccounts",
-      });
-      setIsConnecting(false);
-      onLogin(provider);
     }
   };
 
   const onLogin = async (provider) => {
-    const web3 = new Web3(provider);
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider(
+        "https://etherscan.io/address/0x822480D4eFD781C696272F0aca9980395Db72cc0"
+      )
+    );
+    window.ethereum.enable();
+
     console.log("provider", provider);
     const accounts = await web3.eth.getAccounts();
     if (accounts.length === 0) {
@@ -80,10 +87,11 @@ const Layout = ({
     if (networkId == 42) {
       // 0x822480D4eFD781C696272F0aca9980395Db72cc0 // address of token
       const contractAddress = "0x822480D4eFD781C696272F0aca9980395Db72cc0";
+      const contractAddress2 = "0x94d916873b22c9c1b53695f1c002f78537b9b3b2";
       const currentAdd = "0x3E3d944Bd6aEECFA864F9eb93337F19B5e95Ff74";
       const algoPooltokencontract = new web3.eth.Contract(
         contractAbi.abi,
-        currentAdd
+        contractAddress
       );
 
       //  const nameoftoken = await algoPooltokencontract.methods;
@@ -93,11 +101,11 @@ const Layout = ({
       //  const rewardCallToken = await algoPooltokencontract.methods.rewardAPY().call();
       console.clear();
 
-      // let result = await algoPooltokencontract?.methods
-      //   ?.balanceOf(contractAddress)
-      //   ?.call();
-      // console.log("contract", algoPooltokencontract.methods);
-      // console.log("result", result);
+      let result = await algoPooltokencontract?.methods
+        ?.balanceOf(currentAdd)
+        .call();
+      console.log("contract", algoPooltokencontract.methods);
+      console.log("result", result);
       //  console.log(nameoftoken);
       // console.log(rewardToken);
       // console.log(rewardTokenmeth);
