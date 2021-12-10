@@ -5,7 +5,10 @@ import { useScrollDetect } from "../../utils";
 import Icons from "../common/Icons";
 import NavbarModalComp from "../modals/NavbarModal";
 
-const WelcomeNavLinks = ({ currentAccount }) => {
+
+
+const WelcomeNavLinks = ({currentAccount, currentNetwork}) => {
+
   const router = useRouter();
 
   return (
@@ -33,18 +36,16 @@ const WelcomeNavLinks = ({ currentAccount }) => {
         </Link>
       </div>
       <div className="actions">
-        <ul>
-          <li>
             <Link href="/">
               <a> {currentAccount?.substring(0, 10)}... </a>
             </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-const LoginNavLinks = ({ openModal }) => {
+              <p>{currentNetwork}</p>
+        </div>
+  </div>
+  )
+}
+const LoginNavLinks = ({openModal}) => {
+
   return (
     <div className="nav-links">
       <div className="actions">
@@ -56,7 +57,8 @@ const LoginNavLinks = ({ openModal }) => {
   );
 };
 
-const NavBar = ({ currentAccount, onLoginHandler, isConnected }) => {
+const NavBar = ({currentAccount, onLoginHandler, isConnected, currentNetwork}) => {
+  
   const [toggleModal, setToggleModal] = useState(false);
 
   const openModal = () => {
@@ -75,11 +77,10 @@ const NavBar = ({ currentAccount, onLoginHandler, isConnected }) => {
           <img src="/assets/images/main_logo.png" alt="" />
         </div>
         <>
-          {isConnected ? (
-            <WelcomeNavLinks currentAccount={currentAccount} />
-          ) : (
-            <LoginNavLinks openModal={openModal} />
-          )}
+          {isConnected
+            ? <WelcomeNavLinks currentAccount={currentAccount} currentNetwork={currentNetwork}/>
+            : <LoginNavLinks openModal={openModal}/>
+          }
         </>
       </div>
       {toggleModal && (
