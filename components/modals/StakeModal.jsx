@@ -146,41 +146,48 @@ const StakeModalCompOne = ({ toggleState, toggleTab }) => {
   const estimatedValue = calcaPercent();
 
   // onSubmit={evt => invest(evt)}
-  
+
   return (
     <div className={toggleState === 1 ? "content active-content" : "content"}>
       <div>
         <p className="heading-smaller">Stake AVS</p>
         <p className="text-light">Enter AVS amount and earn high rewards</p>
       </div>
-      <form> 
-         <div className="modal_input flex mt-3 justify-between pl-2 pr-2">
-            <input
-              value={stakeAmount}
-              placeholder="Enter amount to stake"
-              onChange={handleChange}
-              type="number"
-              required
-            />
-            <div className="flex pt-1 pb-1 align-center">
-              <span className="mr-1">
-                <Icon name={"algovest"} />
-              </span>
-              <p className=" font-regular text-light">AVS</p>
-            </div>
-         </div>
-            { display &&
-                  <div className='flex mt-1 align-center'>
-                      <Icon name='alert' size={20} fill='green' /> 
-                      <p className='text-smaller'> &nbsp; You don't have enough balance </p>
-                  </div>
-              }
-          <div className="modal-btn">
-            <button type='submit' onClick={() => toggleTab(2)} className="btn btn-primary mt-4">
-              Connect Wallet
-            </button>
+      <form>
+        <div className="modal_input flex mt-3 justify-between pl-2 pr-2">
+          <input
+            value={stakeAmount}
+            placeholder="Enter amount to stake"
+            onChange={handleChange}
+            type="number"
+            required
+          />
+          <div className="flex pt-1 pb-1 align-center">
+            <span className="mr-1">
+              <Icon name={"algovest"} />
+            </span>
+            <p className=" font-regular text-light">AVS</p>
           </div>
-        
+        </div>
+        {display && (
+          <div className="flex mt-1 align-center">
+            <Icon name="alert" size={20} fill="green" />
+            <p className="text-smaller">
+              {" "}
+              &nbsp; You don&apos;t have enough balance{" "}
+            </p>
+          </div>
+        )}
+        <div className="modal-btn">
+          <button
+            type="submit"
+            onClick={() => toggleTab(2)}
+            className="btn btn-primary mt-4"
+          >
+            Connect Wallet
+          </button>
+        </div>
+
         <EstimationSection
           icon_name="CopyIcon"
           color="green"
