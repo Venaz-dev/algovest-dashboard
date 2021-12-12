@@ -35,107 +35,8 @@ const Layout = ({ children }) => {
     42: "Kovan Test Network",
   };
 
-  //loadBlockChainData
-  const onLogin = async (provider) => {
-    const web3 = new Web3(
-      new Web3.providers.HttpProvider(
-        "https://etherscan.io/address/0x822480D4eFD781C696272F0aca9980395Db72cc0"
-      )
-    );
-    window.ethereum.enable();
-
-    console.log("provider", provider);
-    const accounts = await web3.eth.getAccounts();
-    const chainId = await web3.eth.getChainId();
-    if (accounts.length === 0) {
-      console.log("Please connect to MetaMask!");
-    } else if (accounts[0] !== currentAccount) {
-      setProvider(provider);
-      setWeb3(web3);
-      setChainId(chainId);
-      setCurrentAccount(accounts[0]);
-
-      // const accBalanceEth = web3.utils.fromWei(
-      //   await web3.eth.getBalance(accounts[0]),
-      //   "ether"
-      // );
-
-      // setBalance(Number(accBalanceEth).toFixed(6));
-      setIsConnected(true);
-    }
-
-    const networkId = await web3.eth.net.getId();
-
-    // Load Token
-    // const TokenData = contractAbi.networks[chainId]
-
-    if (networkId) {
-      // Get the contract instance for the yNFT Token
-      // _stablecoin (address): 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
-      // 0x822480D4eFD781C696272F0aca9980395Db72cc0 // address of token
-      const contractAddress = "0x822480D4eFD781C696272F0aca9980395Db72cc0";
-      const algoPooltokencontract = new web3.eth.Contract(
-        contractAbi.abi,
-        contractAddress
-      );
-
-      // calling the contract methods
-      const ownerprint = await algoPooltokencontract.methods.owner().call();
-
-      const balanceofuser = await algoPooltokencontract.methods
-        .balanceOf(accounts[0])
-        .call();
-      const balanceofuserinwei = await web3.utils.fromWei(
-        balanceofuser,
-        "ether"
-      );
-
-      // const depositTokenAddr = await algoPooltokencontract.methods.depositToken().call({ from: accounts[0] });
-      // const depositContract = new web3.eth.Contract(contractAbi.abi, depositTokenAddr);
-
-      // const rewardTokenAddr = await algoPooltokencontract.methods.rewardToken().call({ from: accounts[0] });
-      // const rewardContract = new web3.eth.Contract(contractAbi.abi, rewardTokenAddr);
-
-      // decimal
-      // const decimaloftoken = await algoPooltokencontract.methods.decimals().call();
-
-      // symbol
-      // const symboloftoken = await algoPooltokencontract.methods.symbol().call()
-
-      // totalsupply
-      // const totalsupplyoftoken = await algoPooltokencontract.methods.totalSupply().call();
-      // const totalsupplyoftokenindecimals = await web3.utils.fromWei(totalsupplyoftoken,'ether');
-
-      // const balanceofuser = await algoPooltokencontract.methods.balanceOf(accounts[0]).call();
-      // const balanceofuserinwei = await web3.utils.fromWei(balanceofuser,'ether')
-
-      console.log(algoPooltokencontract);
-      console.log(ownerprint);
-      // console.log(depositTokenAddr);
-      // console.log(depositContract);
-      // console.log(rewardTokenAddr);
-      // console.log(rewardContract);
-      // console.log(decimaloftoken);
-      // console.log(symboloftoken);
-      console.log(balanceofuserinwei);
-      // console.log(totalsupplyoftokenindecimals);
-
-      // setWeb3(web3);
-      // setOwner(await algoPooltokencontract.methods.owner().call({ from: accounts[0] }));
-      // setAccounts(accounts);
-      // setStakerContract(algoPooltokencontract);
-      // setDepositTokenContract(depositContract);
-      // setRewardTokenContract(rewardContract);
-      // setTokenDecimal(decimaloftoken);
-      // setTokenSymbol(symboloftoken);
-      // setBalanceOfUser(balanceofuserinwei);
-      // setTotalSupplyOfTokens(totalsupplyoftokenindecimals)
-    } else {
-      window.alert("DaiToken contract not deployed to detected network.");
-    }
-  };
-
   useEffect(() => {
+    if (typeof window === "undefined") return null;
     const handleAccountsChanged = async (accounts) => {
       const web3Accounts = await web3.eth.getAccounts();
       if (accounts.length === 0) {
@@ -162,9 +63,6 @@ const Layout = ({ children }) => {
       }
     };
   }, [isConnected]);
-  useEffect(() => {
-    if (typeof window === "undefined") return null;
-  }, []);
 
   // Arg [0] : _stablecoin (address): 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   // Arg [1] : name (string): AlgoPool YieldNFT
