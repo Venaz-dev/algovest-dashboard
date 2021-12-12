@@ -10,7 +10,7 @@ import contractAbi from "../../utils/contractAbi.json";
 //   // You now have access to `window`
 // }
 const Layout = ({ children }) => {
-  if (typeof window === "undefined") return null;
+  // if (typeof window === "undefined") return null;
 
   const [currentAccount, setCurrentAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
