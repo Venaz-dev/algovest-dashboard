@@ -20,7 +20,6 @@ export default function YieldPoolPage() {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [balance, setBalance] = useState(0);
 
-  const [showModal, setShowModal] = useState(false);
   const [copyAddress, setCopyAddress] = useState(false);
 
   return (
