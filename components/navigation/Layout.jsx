@@ -10,9 +10,12 @@ import contractAbi from "../../utils/contractAbi.json";
 //   // You now have access to `window`
 // }
 const Layout = ({ children }) => {
+  // if (typeof window === "undefined") return null;
+  // if (typeof window !== 'undefined') {
+  let isWindow = typeof window !== "undefined";
   const [currentAccount, setCurrentAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
-  const [provider, setProvider] = useState(window?.ethereum || {});
+  const [provider, setProvider] = useState(isWindow ? window?.ethereum : {});
   const [chainId, setChainId] = useState(null);
   const [web3, setWeb3] = useState(null);
   const [balance, setBalance] = useState(0);
@@ -42,7 +45,7 @@ const Layout = ({ children }) => {
         "https://etherscan.io/address/0x822480D4eFD781C696272F0aca9980395Db72cc0"
       )
     );
-    window?.ethereum.enable();
+    isWindow && window?.ethereum.enable();
 
     console.log("provider", provider);
     const accounts = await web3.eth.getAccounts();
@@ -131,12 +134,12 @@ const Layout = ({ children }) => {
       // setBalanceOfUser(balanceofuserinwei);
       // setTotalSupplyOfTokens(totalsupplyoftokenindecimals)
     } else {
-      window?.alert("DaiToken contract not deployed to detected network.");
+      isWindow &&
+        window?.alert("DaiToken contract not deployed to detected network.");
     }
   };
 
   useEffect(() => {
-    // if (typeof window === "undefined") return null;
     const handleAccountsChanged = async (accounts) => {
       const web3Accounts = await web3.eth.getAccounts();
       if (accounts.length === 0) {
