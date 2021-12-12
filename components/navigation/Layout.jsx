@@ -19,11 +19,11 @@ const Layout = ({ children }) => {
   const [web3, setWeb3] = useState(null);
   const [balance, setBalance] = useState(0);
 
-  const [stakerContract, setStakerContract] = useState(undefined);
-  const [depositTokenContract, setDepositTokenContract] = useState(undefined);
-  const [rewardTokenContract, setRewardTokenContract] = useState(undefined);
+  const [stakerContract, setStakerContract] = useState(null);
+  const [depositTokenContract, setDepositTokenContract] = useState(null);
+  const [rewardTokenContract, setRewardTokenContract] = useState(null);
   const [userDetails, setUserDetails] = useState({});
-  const [owner, setOwner] = useState(undefined);
+  const [owner, setOwner] = useState(null);
   const [TokenSymbol, setTokenSymbol] = useState("");
   const [TokenDecimal, setTokenDecimal] = useState("");
   const [BalanceOfUser, setBalanceOfUser] = useState(0);
