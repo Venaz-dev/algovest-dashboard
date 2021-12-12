@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
   let isWindow = typeof window !== "undefined";
   const [currentAccount, setCurrentAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
-  const [provider, setProvider] = useState(isWindow ? window?.ethereum : {});
+  // const [provider, setProvider] = useState(isWindow ? window?.ethereum : {});
   const [chainId, setChainId] = useState(null);
   const [web3, setWeb3] = useState(null);
   const [balance, setBalance] = useState(0);
@@ -217,15 +217,15 @@ const Layout = ({ children }) => {
         <meta name="description" content="AlgoVest" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <NavBar
+      {/* <NavBar
         onLogin={onLogin}
         onLogout={onLogout}
         currentAccount={currentAccount}
         isConnected={isConnected}
         currentNetwork={getCurrentNetwork(chainId)}
-      />
+      /> */}
       <main className="children">
-        {!isConnected && <Login onLogin={onLogin} onLogout={onLogout} />}
+        {!isConnected && <Login onLogout={onLogout} />}
         {isConnected && (
           <div currentAccount={currentAccount} balance={balance}>
             {children}
