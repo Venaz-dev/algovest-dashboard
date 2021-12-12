@@ -17,8 +17,19 @@ export default function YieldPoolPage() {
   const closeModal = () => {
     setShowModal(!showModal);
   };
+  const [currentAccount, setCurrentAccount] = useState(null);
+  const [balance, setBalance] = useState(0);
+
+  const [showModal, setShowModal] = useState(false);
+  const [copyAddress, setCopyAddress] = useState(false);
+
   return (
-    <Layout>
+    <Layout
+      balance={balance}
+      currentAccount={currentAccount}
+      setBalance={setBalance}
+      setCurrentAccount={setCurrentAccount}
+    >
       <div className="dashboard">
         <div className="mb-3 description">
           <div className="text">
@@ -125,7 +136,11 @@ export default function YieldPoolPage() {
           <YieldTable />
         </div>
       </div>
-      <YieldPoolModalComp showModal={showModal} setShowModal={setShowModal} closeModal={closeModal} />
+      <YieldPoolModalComp
+        showModal={showModal}
+        setShowModal={setShowModal}
+        closeModal={closeModal}
+      />
     </Layout>
   );
 }
