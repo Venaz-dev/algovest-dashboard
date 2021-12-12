@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import Link from "next/link";
 import NavBar from "./NavBar";
 import Head from "next/head";
-import { useState, useEffect } from "react";
 import Web3 from "web3";
 import Login from "../Login/Login";
 import contractAbi from "../../utils/contractAbi.json";
