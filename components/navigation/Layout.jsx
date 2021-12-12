@@ -10,8 +10,6 @@ import contractAbi from "../../utils/contractAbi.json";
 //   // You now have access to `window`
 // }
 const Layout = ({ children }) => {
-  // if (typeof window === "undefined") return null;
-
   const [currentAccount, setCurrentAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [provider, setProvider] = useState(window.ethereum || {});
@@ -164,6 +162,9 @@ const Layout = ({ children }) => {
       }
     };
   }, [isConnected]);
+  useEffect(() => {
+    if (typeof window === "undefined") return null;
+  }, []);
 
   // Arg [0] : _stablecoin (address): 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   // Arg [1] : name (string): AlgoPool YieldNFT
