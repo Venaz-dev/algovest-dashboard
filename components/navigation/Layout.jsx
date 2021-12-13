@@ -135,6 +135,7 @@ const Layout = ({ children }) => {
       // setTotalSupplyOfTokens(totalsupplyoftokenindecimals)
     } else {
       isWindow &&
+        isWindow &&
         window?.alert("DaiToken contract not deployed to detected network.");
     }
   };

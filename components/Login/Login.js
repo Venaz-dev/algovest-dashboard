@@ -54,7 +54,7 @@ const ConnectWallet = ({ onLoginHandler }) => {
 const Login = ({ onLogin }) => {
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [provider, setProvider] = useState(window.ethereum);
+  const [provider, setProvider] = useState();
   const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
 
   const toggleWalletModal = () => {
@@ -66,6 +66,22 @@ const Login = ({ onLogin }) => {
   }, []);
 
   useEffect(() => {
+    // Detect Provider
+    const detectProvider = () => {
+      let provider;
+      if (window.ethereum) {
+        // Modern DApp browsers
+        provider = window.ethereum;
+      } else if (window.web3) {
+        // Legacy dapp browsers
+        provider = window.web3.currentProvider;
+      } else {
+        // Non-dapp browsers
+        console.warn("No Ethereum browser detected! Check out MetaMask");
+      }
+      return provider;
+    };
+
     const provider = detectProvider();
     if (provider) {
       if (provider !== window.ethereum) {
@@ -75,23 +91,8 @@ const Login = ({ onLogin }) => {
       }
       setIsMetaMaskInstalled(true);
     }
+    setProvider(window.ethereum);
   }, []);
-
-  // Detect Provider
-  const detectProvider = () => {
-    let provider;
-    if (window.ethereum) {
-      // Modern DApp browsers
-      provider = window.ethereum;
-    } else if (window.web3) {
-      // Legacy dapp browsers
-      provider = window.web3.currentProvider;
-    } else {
-      // Non-dapp browsers
-      console.warn("No Ethereum browser detected! Check out MetaMask");
-    }
-    return provider;
-  };
 
   const onLoginHandler = async () => {
     const provider = detectProvider();
