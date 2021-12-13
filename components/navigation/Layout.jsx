@@ -65,6 +65,8 @@ const Layout = ({ children }) => {
 
       // setBalance(Number(accBalanceEth).toFixed(6));
       setIsConnected(true);
+      console.clear();
+      console.log("connected");
     }
 
     const networkId = await web3.eth.net.getId();
@@ -226,7 +228,13 @@ const Layout = ({ children }) => {
         currentNetwork={getCurrentNetwork(chainId)}
       />
       <main className="children">
-        {!isConnected && <Login onLogin={onLogin} onLogout={onLogout} />}
+        {!isConnected && (
+          <Login
+            onLogin={onLogin}
+            onLogout={onLogout}
+            setIsConnected={setIsConnected}
+          />
+        )}
         {isConnected && (
           <div currentAccount={currentAccount} balance={balance}>
             {children}

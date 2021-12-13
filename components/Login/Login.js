@@ -1,14 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Web3 from "web3";
 import Icon from "../common/Icons";
 
-const ConnectWallet = ({ onLoginHandler }) => {
+const ConnectWallet = ({
+  onLoginHandler,
+  showWalletModal,
+  setShowWalletModal,
+  closeModal,
+}) => {
   const [hover, setHover] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      if (showWalletModal && ref.current && !ref.current.contains(e.target)) {
+        setShowWalletModal(false);
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [showWalletModal]);
 
   return (
     <div className="select_wallet_modal_overlay">
-      <div className="select_wallet_modal-container">
+      <div className="select_wallet_modal-container" ref={ref}>
         <div className="">
           <div>
             <p className="font-large">Select a Wallet</p>
@@ -51,7 +72,7 @@ const ConnectWallet = ({ onLoginHandler }) => {
   );
 };
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, setIsConnected }) => {
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
   const [provider, setProvider] = useState();
@@ -116,7 +137,13 @@ const Login = ({ onLogin }) => {
             {!isConnecting && "Connect Wallet"}
             {isConnecting && "Loading..."}
           </button>
-          {showWalletModal && <ConnectWallet onLoginHandler={onLoginHandler} />}
+          {showWalletModal && (
+            <ConnectWallet
+              onLoginHandler={onLoginHandler}
+              showWalletModal={showWalletModal}
+              setShowWalletModal={setShowWalletModal}
+            />
+          )}
         </div>
       )}
 
