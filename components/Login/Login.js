@@ -66,22 +66,6 @@ const Login = ({ onLogin }) => {
   }, []);
 
   useEffect(() => {
-    // Detect Provider
-    const detectProvider = () => {
-      let provider;
-      if (window.ethereum) {
-        // Modern DApp browsers
-        provider = window.ethereum;
-      } else if (window.web3) {
-        // Legacy dapp browsers
-        provider = window.web3.currentProvider;
-      } else {
-        // Non-dapp browsers
-        console.warn("No Ethereum browser detected! Check out MetaMask");
-      }
-      return provider;
-    };
-
     const provider = detectProvider();
     if (provider) {
       if (provider !== window.ethereum) {
@@ -91,8 +75,23 @@ const Login = ({ onLogin }) => {
       }
       setIsMetaMaskInstalled(true);
     }
-    setProvider(window.ethereum);
   }, []);
+
+  // Detect Provider
+  const detectProvider = () => {
+    let provider;
+    if (window.ethereum) {
+      // Modern DApp browsers
+      provider = window.ethereum;
+    } else if (window.web3) {
+      // Legacy dapp browsers
+      provider = window.web3.currentProvider;
+    } else {
+      // Non-dapp browsers
+      console.warn("No Ethereum browser detected! Check out MetaMask");
+    }
+    return provider;
+  };
 
   const onLoginHandler = async () => {
     const provider = detectProvider();
@@ -101,7 +100,6 @@ const Login = ({ onLogin }) => {
       method: "eth_requestAccounts",
     });
     setIsConnecting(false);
-
     onLogin(provider);
   };
 
