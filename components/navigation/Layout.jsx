@@ -5,6 +5,7 @@ import Head from "next/head";
 import Web3 from "web3";
 import Login from "../Login/Login";
 import contractAbi from "../../utils/contractAbi.json";
+import state from "../../state/state";
 
 // if (typeof window !== 'undefined') {
 //   // You now have access to `window`
@@ -29,6 +30,7 @@ const Layout = ({ children }) => {
   const [TokenDecimal, setTokenDecimal] = useState("");
   const [BalanceOfUser, setBalanceOfUser] = useState(0);
   const [TotalSupplyOfTokens, setTotalSupplyOfTokens] = useState(0);
+  const [algovestContract, setAlgovestContract] = useState();
 
   const NETWORKS = {
     1: "Ethereum Main Network",
@@ -83,6 +85,8 @@ const Layout = ({ children }) => {
         contractAbi.abi,
         contractAddress
       );
+      setAlgovestContract(algoPooltokencontract);
+      state.algovestContract = algoPooltokencontract;
 
       // calling the contract methods
       const ownerprint = await algoPooltokencontract.methods.owner().call();
@@ -228,18 +232,18 @@ const Layout = ({ children }) => {
         currentNetwork={getCurrentNetwork(chainId)}
       />
       <main className="children">
-        {!isConnected && (
+        {/* {!isConnected && (
           <Login
             onLogin={onLogin}
             onLogout={onLogout}
             setIsConnected={setIsConnected}
           />
-        )}
-        {isConnected && (
-          <div currentAccount={currentAccount} balance={balance}>
-            {children}
-          </div>
-        )}
+        )} */}
+        {/* {isConnected && ( */}
+        <div currentAccount={currentAccount} balance={balance}>
+          {children}
+        </div>
+        {/* )} */}
       </main>
     </div>
   );
