@@ -40,11 +40,7 @@ const Layout = ({ children }) => {
 
   //loadBlockChainData
   const onLogin = async (provider) => {
-    const web3 = new Web3(
-      new Web3.providers.HttpProvider(
-        "https://etherscan.io/address/0x822480D4eFD781C696272F0aca9980395Db72cc0"
-      )
-    );
+    const web3 = new Web3(provider) || new Web3(Web3.givenProvider);
     isWindow && window?.ethereum.enable();
 
     console.log("provider", provider);
@@ -138,7 +134,7 @@ const Layout = ({ children }) => {
     } else {
       isWindow &&
         isWindow &&
-        window?.alert("DaiToken contract not deployed to detected network.");
+        window?.alert("Token contract not deployed to detected network.");
     }
   };
 
