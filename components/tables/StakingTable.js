@@ -2,7 +2,6 @@ import React from "react";
 import MaterialTable from "material-table";
 
 import tableIcons from "../common/materialicons/tableIcons";
-import { style } from "dom-helpers";
 const StakingTable = () => {
   const tableColumns = [
     {
@@ -57,7 +56,7 @@ const StakingTable = () => {
       date: "21.09.2021",
       tokens: "AVS",
       staked_avs: "1,740.00",
-      est_apy: "40%",
+      est_apr: "40%",
       lockup_period: "8 Weeks",
       rewards_earned: "0.51942",
       accrue_days: 10,
@@ -68,29 +67,19 @@ const StakingTable = () => {
       date: "14.09.2021",
       tokens: "AVS",
       staked_avs: "25,620.00",
-      est_apy: "60%",
+      est_apr: "60%",
       lockup_period: "16 Weeks",
       rewards_earned: "2.76403",
       accrue_days: 112,
       status: "Done",
       state: "Unstake",
     },
-    {
-      date: "02.09.2021",
-      tokens: "AVS",
-      staked_avs: "18,506.00",
-      est_apy: "80%",
-      lockup_period: "24 Weeks",
-      rewards_earned: "17.13092",
-      accrue_days: 16,
-      status: "Done",
-      state: "Unstake",
-    },
+
     {
       date: "02.09.2021",
       tokens: "AVS",
       staked_avs: "38,506.00",
-      est_apy: "80%",
+      est_apr: "80%",
       lockup_period: "24 Weeks",
       rewards_earned: "17.13092",
       accrue_days: 69,
@@ -101,7 +90,7 @@ const StakingTable = () => {
       date: "02.09.2021",
       tokens: "AVS",
       staked_avs: "98,506.00",
-      est_apy: "80%",
+      est_apr: "80%",
       lockup_period: "24 Weeks",
       rewards_earned: "17.13092",
       accrue_days: 169,
@@ -112,7 +101,7 @@ const StakingTable = () => {
       date: "02.09.2021",
       tokens: "AVS",
       staked_avs: "77,506.00",
-      est_apy: "80%",
+      est_apr: "80%",
       lockup_period: "24 Weeks",
       rewards_earned: "17.13092",
       accrue_days: 169,
@@ -140,39 +129,41 @@ const StakingTable = () => {
     fontSize: 12,
   };
   return (
-    <div style={{ maxWidth: "100%" }}>
-      <MaterialTable
-        icons={tableIcons}
-        columns={tableColumns}
-        data={tableData}
-        options={{
-          paging: tableData.length > 5 ? true : false,
-          headerStyle: { fontSize: 14, color: "#808080" },
-          rowStyle: {
-            color: "#222222",
-          },
-          searchFieldStyle: {
-            borderRadius: 50,
-          },
-          search: true,
-          searchFieldAlignment: "left",
-          searchAutoFocus: false,
-          searchFieldVariant: 'outlined',
-          showTitle: false,
-          pageSize: 5,
-          emptyRowsWhenPaging: false,
-          exportButton: true,
-        }}
-        localization={{
-          toolbar: {
-            searchPlaceholder: "Search for amount, APY or rewards",
-            // exportTitle: "Export",
-            // exportAriaLabel: "Export",
-            exportName: "Expo",
-          }
-        }}
-      />
-    </div>
+    <React.StrictMode>
+      <div style={{ maxWidth: "100%" }}>
+        <MaterialTable
+          icons={tableIcons}
+          columns={tableColumns}
+          data={tableData}
+          options={{
+            paging: tableData.length > 5 ? true : false,
+            headerStyle: { fontSize: 14, color: "#808080" },
+            rowStyle: {
+              color: "#222222",
+            },
+            searchFieldStyle: {
+              borderRadius: 50,
+            },
+            search: true,
+            searchFieldAlignment: "left",
+            searchAutoFocus: false,
+            searchFieldVariant: "outlined",
+            showTitle: false,
+            pageSize: 5,
+            emptyRowsWhenPaging: false,
+            exportButton: true,
+          }}
+          localization={{
+            toolbar: {
+              searchPlaceholder: "Search for amount, APR or rewards",
+              // exportTitle: "Export",
+              // exportAriaLabel: "Export",
+              exportName: "Expo",
+            },
+          }}
+        />
+      </div>
+    </React.StrictMode>
   );
 };
 

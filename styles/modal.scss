@@ -21,7 +21,7 @@
 
     .close-icon {
       position: absolute;
-      right: 25%;
+      right: 22%;
       top: 8%;
       cursor: pointer;
     }
@@ -40,7 +40,7 @@
     border-radius: 10px;
     padding: 36px 10px;
     width: 100%;
-    min-height: 450px;
+    height: 60%;
 
     .return_tab {
       display: flex;
@@ -51,6 +51,7 @@
       align-items: center;
       cursor: pointer;
       border-radius: 15px;
+      border: 1px solid transparent;
 
       &:hover {
         border: 1px solid #06aa65;
@@ -141,9 +142,10 @@
 }
 
 .lockup-period-label {
-  background-color: #cec;
+  background-color: #efefef;
   border-radius: 20px;
   height: 40px;
+  color: #808080 !important;
 }
 
 .wallet-cont {
@@ -176,6 +178,51 @@
 
     &:hover {
       color: #222222;
+    }
+  }
+}
+
+.yeild-options {
+  // background-color: red;
+
+  .option {
+    height: 78px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1.5px solid #c4c4c4;
+    padding: 12px 26px;
+    margin: 20px 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    .heading-smaller {
+      color: $primary;
+      font-size: 22px !important;
+    }
+    .recommended {
+      color: white;
+      background-color: $primary;
+      position: absolute;
+      border-radius: 100px;
+      padding: 3px 5px;
+      left: 40%;
+      font-size: 12px;
+    }
+    .desc {
+      color: #808080;
+      font-size: 14px;
+      border-right: 1px solid #c4c4c4;
+      padding-right: 20px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      margin-right: 20px;
+    }
+
+    &:hover {
+      border-color: $primary;
+      background-color: rgba(235, 255, 246, 0.61);
     }
   }
 }

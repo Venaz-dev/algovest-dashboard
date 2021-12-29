@@ -53,6 +53,9 @@ export const YieldPoolModal = () => {
 
   const returnTab = () => {
     if (toggleTab > 1) {
+      if (toggleTab === 2) {
+        setShow(false);
+      }
       setToggleTab(toggleTab - 1);
     }
   };
@@ -105,79 +108,75 @@ const YieldPoolModalCompOne = ({
   return (
     <div className={toggleTab === 1 ? "content active-content" : "content"}>
       <div>
-        <p className="heading-smaller">USDC Yield Pool</p>
+        <p className="heading-smaller mb-1">USDC Yield Pool</p>
         <p className="text-light">Choose a pool and deposit any amount.</p>
       </div>
 
-      <div
-        className="labels bord-1 bord-rad-10 mt-3"
-        onClick={() => {
-          setSelectOption(1);
-          switchTab(2);
-          setItems({ duration: "8 weeks", percent: "40" });
-        }}
-      >
-        <div className="flex pl-2 pr-2 pt-1 align-center">
-          <p className="heading-small mr-1 tcolor-green"> 40% APY </p>
-        </div>
-        <div className="flex pl-2 pr-2 pb-1">
-          <div className="flex align-center">
-            <Icon name="lock" size={20} />
-            <p className="text-smaller ml-1"> 8 weeks lockup period </p>
-          </div>
-          <span className="ml-2 mr-2"> | </span>
+      <div className="yeild-options">
+        <div
+          className="option"
+          onClick={() => {
+            setSelectOption(1);
+            switchTab(2);
+            setItems({ duration: "8 weeks", percent: "20" });
+          }}
+        >
+          <p className="heading-smaller"> 20% APR </p>
+
           <div className="flex">
-            <Icon name="token" size={20} />
-            <p className="text-small ml-1"> USDC </p>
+            <div className="flex align-center">
+              <Icon name="lock" size={20} />
+              <p className="desc ml-1"> 8 weeks lockup period </p>
+            </div>
+            {/* <span className="ml-2 mr-2 desc"> | </span> */}
+            <div className="flex">
+              <Icon name="token" size={20} />
+              <p className="text-small ml-1"> USDC </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        className="labels bord-green bord-rad-10 mt-3 bg-light-green"
-        onClick={() => {
-          setSelectOption(2);
-          switchTab(2);
-          setItems({ duration: "16 weeks", percent: "60" });
-        }}
-      >
-        <div className="flex pl-2 pr-2 pt-1 align-center">
-          <p className="heading-small mr-1 tcolor-green"> 60% APY </p>
-          <div className="recommend_box text-smaller color-white bg-green bord-rad-10 w-30">
-            <p>Recommended</p>
-          </div>
-        </div>
-        <div className="flex pl-2 pr-2 pb-1">
-          <div className="flex align-center">
-            <Icon name="lock" size={20} />
-            <p className="text-smaller ml-1"> 16 weeks lockup period </p>
-          </div>
-          <span className="ml-2 mr-2"> | </span>
+        <div
+          className="option"
+          onClick={() => {
+            setSelectOption(1);
+            switchTab(2);
+            setItems({ duration: "16 weeks", percent: "40" });
+          }}
+        >
+          <p className="heading-smaller"> 40% APR </p>
+          <p className="recommended">Recommended</p>
           <div className="flex">
-            <Icon name="token" size={20} />
-            <p className="text-small ml-1"> USDC </p>
+            <div className="flex align-center">
+              <Icon name="lock" size={20} />
+              <p className="desc ml-1"> 16 weeks lockup period </p>
+            </div>
+            {/* <span className="ml-2 mr-2 desc"> | </span> */}
+            <div className="flex">
+              <Icon name="token" size={20} />
+              <p className="text-small ml-1"> USDC </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        className="labels bord-1 bord-rad-10 mt-3"
-        onClick={() => {
-          setSelectOption(1);
-          switchTab(2);
-          setItems({ duration: "24 weeks", percent: "80" });
-        }}
-      >
-        <div className="flex pl-2 pr-2 pt-1 align-center">
-          <p className="heading-small mr-1 tcolor-green"> 80% APY </p>
-        </div>
-        <div className="flex pl-2 pr-2 pb-1">
-          <div className="flex align-center">
-            <Icon name="lock" size={20} color="green" />
-            <p className="text-smaller ml-1"> 24 weeks lockup period </p>
-          </div>
-          <span className="ml-2 mr-2"> | </span>
+        <div
+          className="option"
+          onClick={() => {
+            setSelectOption(3);
+            switchTab(2);
+            setItems({ duration: "24 weeks", percent: "60" });
+          }}
+        >
+          <p className="heading-smaller"> 60% APR </p>
+
           <div className="flex">
-            <Icon name="token" size={20} />
-            <p className="text-small ml-1"> USDC </p>
+            <div className="flex align-center">
+              <Icon name="lock" size={20} />
+              <p className="desc ml-1"> 24 weeks lockup period </p>
+            </div>
+            {/* <span className="ml-2 mr-2 desc"> | </span> */}
+            <div className="flex">
+              <Icon name="token" size={20} />
+              <p className="text-small ml-1"> USDC </p>
+            </div>
           </div>
         </div>
       </div>
@@ -222,7 +221,7 @@ const YieldPoolModalCompTwo = ({ toggleTab, items, switchTab }) => {
   return (
     <div className={toggleTab === 2 ? "content active-content" : "content"}>
       <div>
-        <p className="heading-smaller">Deposit USDC</p>
+        <p className="heading-smaller mb-1">Deposit USDC</p>
         <p className="text-light">
           Enter USDC amount and earn high cumulative interest.
         </p>
@@ -257,11 +256,11 @@ const YieldPoolModalCompTwo = ({ toggleTab, items, switchTab }) => {
         )}
         <div className="lockup-period-label mt-5 flex align-center justify-between pl-3 pr-3">
           <div className="flex">
-            <Icon name="CopyIcon" size={20} color="green" />
+            <Icon name="lock" size={20} />
             <p className="ml-1"> {items.duration} lockup period</p>
           </div>
           <div>
-            <p> @{items.percent}% APY</p>
+            <p> @{items.percent}% APR</p>
           </div>
         </div>
         <div className="modal-btn">
@@ -284,7 +283,7 @@ const YieldPoolModalCompTwo = ({ toggleTab, items, switchTab }) => {
         color="green"
         size={45}
         amount={estimatedValue}
-        estimated_reward={`${items.percent}% APY Estimated Earnings`}
+        estimated_reward={`${items.percent}% APR Estimated Earnings`}
       />
     </div>
   );

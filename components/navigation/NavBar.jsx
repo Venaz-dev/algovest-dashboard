@@ -32,15 +32,6 @@ const WelcomeNavLinks = ({ currentAccount }) => {
           </a>
         </Link>
       </div>
-      <div className="actions">
-        <ul>
-          <li>
-            <Link href="/">
-              <a> {currentAccount?.substring(0, 10)}... </a>
-            </Link>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 };
@@ -48,6 +39,7 @@ const LoginNavLinks = ({ openModal }) => {
   return (
     <div className="nav-links">
       <div className="actions">
+        <button className="btn btn-black mr-3"> Connect Wallet</button>
         <button onClick={openModal} className="modal-btn">
           <Icons name="triple-dot" />
         </button>
@@ -75,11 +67,13 @@ const NavBar = ({ currentAccount, onLoginHandler, isConnected }) => {
           <img src="/assets/images/main_logo.png" alt="" />
         </div>
         <>
-          {isConnected ? (
+          <WelcomeNavLinks currentAccount={currentAccount} />
+          <LoginNavLinks openModal={openModal} />
+          {/* {isConnected ? (
             <WelcomeNavLinks currentAccount={currentAccount} />
           ) : (
             <LoginNavLinks openModal={openModal} />
-          )}
+          )} */}
         </>
       </div>
       {toggleModal && (
